@@ -1,0 +1,222 @@
+<!doctype html>
+<html lang="en" data-theme="light">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Victory Judo Kai — Plugin Showcase</title>
+    <script type="module" crossorigin src="/VictoryJudoClub/assets/index-DEd47ySG.js"></script>
+    <link rel="stylesheet" crossorigin href="/VictoryJudoClub/assets/index-BcrEUjQ-.css">
+  </head>
+  <body class="bg-base-100 text-base-content">
+    <!-- Top Nav -->
+    <div class="navbar fixed top-0 left-0 right-0 z-50 bg-base-100/90 backdrop-blur border-b border-base-300">
+      <div class="navbar-start px-2">
+        <a class="btn btn-ghost text-xl font-bold">VJK</a>
+      </div>
+      <div class="navbar-center hidden md:flex">
+        <ul class="menu menu-horizontal gap-1">
+          <li><a data-scroll-to href="#hero">Hero</a></li>
+          <li><a data-scroll-to href="#parallax">Parallax</a></li>
+          <li><a data-scroll-to href="#components">Components</a></li>
+          <li><a data-scroll-to href="#gsap">GSAP</a></li>
+          <li><a data-scroll-to href="#contact">Contact</a></li>
+        </ul>
+      </div>
+      <div class="navbar-end gap-2 pr-2">
+        <button id="openModal" class="btn btn-outline btn-sm">Open modal</button>
+        <div class="dropdown dropdown-end">
+          <div tabindex="0" role="button" class="btn btn-sm">Theme</div>
+          <ul tabindex="0" class="dropdown-content menu bg-base-100 rounded-box z-[60] w-44 p-2 shadow">
+            <li><a data-theme-switch="light">light</a></li>
+            <li><a data-theme-switch="dark">dark</a></li>
+            <li><a data-theme-switch="cupcake">cupcake</a></li>
+            <li><a data-theme-switch="synthwave">synthwave</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- Locomotive Scroll container -->
+    <main data-scroll-container class="pt-16">
+      <!-- HERO -->
+      <section id="hero" data-scroll-section class="hero min-h-[90svh] bg-base-200">
+        <div class="hero-content flex-col lg:flex-row gap-10">
+          <div class="max-w-xl" data-scroll data-scroll-speed="-1">
+            <h1 class="text-5xl font-extrabold leading-tight">The host solution with the most solution</h1>
+            <p class="mt-4 opacity-70">
+              This page exists to sanity check Tailwind v4, daisyUI, Locomotive Scroll, and GSAP.
+              Switch themes, click buttons, scroll around.
+            </p>
+            <div class="mt-6 flex gap-3">
+              <a class="btn btn-primary" data-scroll-to href="#parallax">Try parallax</a>
+              <button class="btn btn-secondary" id="toastBtn">Show toast</button>
+            </div>
+          </div>
+          <div class="mockup-window border bg-base-300 w-full max-w-xl" data-scroll data-scroll-speed="1">
+            <div class="bg-base-200 p-6">
+              <ul class="space-y-2">
+                <li class="text-success font-medium">Tailwind + daisyUI active</li>
+                <li class="text-info font-medium">Locomotive Scroll smooth scrolling</li>
+                <li class="text-warning font-medium">GSAP ready below</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- PARALLAX -->
+      <section id="parallax" data-scroll-section class="bg-base-100">
+        <div class="container mx-auto px-4 py-24">
+          <h2 class="text-3xl font-bold mb-8">Parallax showcase</h2>
+
+          <div class="relative h-80 overflow-hidden rounded-box bg-base-200">
+            <h3 class="absolute left-6 top-6 text-4xl font-extrabold" data-scroll data-scroll-speed="2">Fast layer</h3>
+            <p class="absolute right-6 bottom-6 text-xl" data-scroll data-scroll-speed="-1">Reverse slow</p>
+            <div class="absolute inset-0 grid place-items-center text-2xl opacity-70"
+                 data-scroll data-scroll-call="centerSeen">
+              Center layer triggers a Locomotive call
+            </div>
+          </div>
+
+          <div class="mt-12 grid gap-6 md:grid-cols-3">
+            <div class="stat bg-base-200 rounded-box" data-scroll data-scroll-speed="1">
+              <div class="stat-title">Tailwind</div>
+              <div class="stat-value">v4</div>
+              <div class="stat-desc">Utilities render</div>
+            </div>
+            <div class="stat bg-base-200 rounded-box" data-scroll data-scroll-speed="0">
+              <div class="stat-title">daisyUI</div>
+              <div class="stat-value">v5</div>
+              <div class="stat-desc">Components styled</div>
+            </div>
+            <div class="stat bg-base-200 rounded-box" data-scroll data-scroll-speed="-1">
+              <div class="stat-title">Locomotive</div>
+              <div class="stat-value">Smooth</div>
+              <div class="stat-desc">Parallax works</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- COMPONENTS -->
+      <section id="components" data-scroll-section class="bg-base-200">
+        <div class="container mx-auto px-4 py-24">
+          <h2 class="text-3xl font-bold mb-8">daisyUI components</h2>
+          <div class="grid gap-6 md:grid-cols-3">
+            <div class="card bg-base-100 shadow">
+              <div class="card-body">
+                <h3 class="card-title">Link In Bio</h3>
+                <p class="opacity-70">Free 15 day trial, then as low as <span class="font-semibold">$2.50</span> / month</p>
+                <ul class="list-disc list-inside text-sm opacity-80">
+                  <li>Create tons of links</li>
+                  <li>Free SSL</li>
+                  <li>Embed media</li>
+                  <li>Connect analytics</li>
+                </ul>
+                <div class="card-actions justify-end">
+                  <button class="btn btn-primary btn-sm">Start trial</button>
+                </div>
+              </div>
+            </div>
+            <div class="card bg-base-100 shadow">
+              <div class="card-body">
+                <h3 class="card-title">Articulation</h3>
+                <p class="opacity-70">As low as <span class="font-semibold">$6.00</span> / month</p>
+                <ul class="list-disc list-inside text-sm opacity-80">
+                  <li>Drag and drop builder</li>
+                  <li>Unlimited pages</li>
+                  <li>Blog and forms</li>
+                  <li>Ecommerce ready</li>
+                </ul>
+                <div class="card-actions justify-end">
+                  <button class="btn btn-secondary btn-sm">Explore</button>
+                </div>
+              </div>
+            </div>
+            <div class="card bg-base-100 shadow">
+              <div class="card-body">
+                <h3 class="card-title">Cloud WordPress</h3>
+                <p class="opacity-70">Free 15 day trial, then as low as <span class="font-semibold">$2.50</span> / month</p>
+                <ul class="list-disc list-inside text-sm opacity-80">
+                  <li>Built on WP Cloud</li>
+                  <li>CDN included</li>
+                  <li>Automatic backups</li>
+                  <li>DDoS protection</li>
+                </ul>
+                <div class="card-actions justify-end">
+                  <button class="btn btn-accent btn-sm">Spin up</button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="mt-12 flex flex-wrap items-center gap-3">
+            <input type="text" placeholder="Your email" class="input input-bordered" />
+            <button class="btn">Subscribe</button>
+            <label class="label">
+              <span class="label-text-alt opacity-60">No spam. Unsubscribe anytime.</span>
+            </label>
+          </div>
+        </div>
+      </section>
+
+      <!-- GSAP -->
+      <section id="gsap" data-scroll-section class="bg-base-100">
+        <div class="container mx-auto px-4 py-24">
+          <h2 class="text-3xl font-bold mb-2">GSAP timeline</h2>
+          <p class="opacity-70 mb-8">Click Play. If the boxes move and rotate, GSAP works.</p>
+
+          <div class="flex items-center gap-3 mb-6">
+            <button id="playTl" class="btn btn-primary">Play</button>
+            <button id="reverseTl" class="btn btn-outline">Reverse</button>
+            <button id="resetTl" class="btn">Reset</button>
+          </div>
+
+          <div class="flex gap-6">
+            <div id="green" class="box w-24 h-24 rounded-box bg-green-500"></div>
+            <div id="blue" class="box w-24 h-24 rounded-box bg-blue-500"></div>
+            <div id="orange" class="box w-24 h-24 rounded-box bg-orange-500"></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- CONTACT -->
+      <section id="contact" data-scroll-section class="bg-base-200">
+        <div class="container mx-auto px-4 py-24 text-center">
+          <h2 class="text-3xl font-bold mb-4">That is it</h2>
+          <p class="opacity-70">If everything above looks right, your stack is good.</p>
+          <div class="mt-6">
+            <a data-scroll-to href="#hero" class="link link-hover">Back to top</a>
+          </div>
+        </div>
+      </section>
+
+      <footer data-scroll-section class="footer footer-center bg-base-100 text-base-content p-10 border-t border-base-300">
+        <nav class="grid grid-flow-col gap-4">
+          <a data-scroll-to href="#components" class="link link-hover">Components</a>
+          <a data-scroll-to href="#gsap" class="link link-hover">GSAP</a>
+        </nav>
+        <aside>
+          <p>Remove anything you do not need. This page is a test bed.</p>
+        </aside>
+      </footer>
+    </main>
+
+    <!-- daisyUI modal -->
+    <dialog id="infoModal" class="modal">
+      <div class="modal-box">
+        <h3 class="font-bold text-lg">Modal</h3>
+        <p class="py-4">If this is styled, daisyUI is loaded.</p>
+        <div class="modal-action">
+          <form method="dialog">
+            <button class="btn">Close</button>
+          </form>
+        </div>
+      </div>
+      <form method="dialog" class="modal-backdrop">
+        <button>close</button>
+      </form>
+    </dialog>
+
+  </body>
+</html>
