@@ -3,219 +3,256 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Victory Judo Kai — Plugin Showcase</title>
+
+    <title>Victory Judo Kai Toronto | Judo Club in Thornhill</title>
+    <meta name="description" content="Victory Judo Kai in Thornhill, Toronto. Judo club for kids, youth, and adults. Schedule Monday, Wednesday, Friday, and Saturday at 66 Glen Cameron Rd Unit 2." />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Victory Judo Kai Toronto" />
+    <meta property="og:description" content="Judo club in Thornhill, Toronto for kids, youth, and adults. Friendly training at Victory Judo Kai." />
+    <meta property="og:image" content="/src/images/elementor-placeholder-image.png" />
+
     <link rel="stylesheet" href="/src/styles.css" />
   </head>
+
   <body class="bg-base-100 text-base-content">
-    <!-- Top Nav -->
-    <div class="navbar fixed top-0 left-0 right-0 z-50 bg-base-100/90 backdrop-blur border-b border-base-300">
-      <div class="navbar-start px-2">
-        <a class="btn btn-ghost text-xl font-bold">VJK</a>
-      </div>
-      <div class="navbar-center hidden md:flex">
-        <ul class="menu menu-horizontal gap-1">
-          <li><a data-scroll-to href="#hero">Hero</a></li>
-          <li><a data-scroll-to href="#parallax">Parallax</a></li>
-          <li><a data-scroll-to href="#components">Components</a></li>
-          <li><a data-scroll-to href="#gsap">GSAP</a></li>
-          <li><a data-scroll-to href="#contact">Contact</a></li>
-        </ul>
-      </div>
-      <div class="navbar-end gap-2 pr-2">
-        <button id="openModal" class="btn btn-outline btn-sm">Open modal</button>
-        <div class="dropdown dropdown-end">
-          <div tabindex="0" role="button" class="btn btn-sm">Theme</div>
-          <ul tabindex="0" class="dropdown-content menu bg-base-100 rounded-box z-[60] w-44 p-2 shadow">
-            <li><a data-theme-switch="light">light</a></li>
-            <li><a data-theme-switch="dark">dark</a></li>
-            <li><a data-theme-switch="cupcake">cupcake</a></li>
-            <li><a data-theme-switch="synthwave">synthwave</a></li>
+    <a href="#intro" class="sr-only focus:not-sr-only focus:absolute focus:left-2 focus:top-2 px-3 py-2 bg-primary text-primary-content rounded">Skip to content</a>
+
+    <header class="fixed top-0 left-0 right-0 z-50 bg-base-100/90 backdrop-blur border-b border-base-300">
+      <nav class="navbar px-2 md:px-3">
+        <div class="navbar-start">
+          <a class="btn btn-ghost text-xl font-bold" href="#intro" data-scroll-to>Victory Judo Kai</a>
+        </div>
+
+        <div class="navbar-center hidden md:flex">
+          <ul class="menu menu-horizontal gap-1">
+            <li><a href="#intro" data-scroll-to>Home</a></li>
+            <li><a href="#coach" data-scroll-to>Coach</a></li>
+            <li><a href="#classes" data-scroll-to>Schedule</a></li>
+            <li><a href="#gallery" data-scroll-to>Gallery</a></li>
+            <li><a href="#contact" data-scroll-to>Contact</a></li>
           </ul>
         </div>
-      </div>
-    </div>
 
-    <!-- Locomotive Scroll container -->
-    <main data-scroll-container class="pt-16">
+        <div class="navbar-end gap-2">
+          <label class="swap">
+            <input id="themeToggle" type="checkbox" />
+            <svg class="swap-off w-6 h-6" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24" aria-label="Enable dark mode"><path d="M6.76 4.84l-1.8-1.79-1.42 1.41 1.79 1.8 1.43-1.42zM1 13h3v-2H1v2zm10 9h2v-3h-2v3zM4.94 19.06l1.42 1.41 1.8-1.79-1.41-1.42-1.81 1.8zM20 11V9h-3v2h3zm-8-8h-2v3h2V3zm6.24 1.05l-1.41 1.41 1.79 1.8 1.41-1.42-1.79-1.79zM12 6a 6 6 0 100 12 6 6 0 000-12z"/></svg>
+            <svg class="swap-on w-6 h-6" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24" aria-label="Disable dark mode"><path d="M20.742 13.045A8.002 8.002 0 0110.955 3.26 8 8 0 1019.74 12.05c.335.33.67.66 1.002.995z"/></svg>
+          </label>
+
+          <div class="dropdown dropdown-end md:hidden">
+            <label tabindex="0" class="btn btn-sm">Menu</label>
+            <ul tabindex="0" class="dropdown-content menu bg-base-100 rounded-box w-44 p-2 shadow">
+              <li><a href="#intro" data-scroll-to>Home</a></li>
+              <li><a href="#coach" data-scroll-to>Coach</a></li>
+              <li><a href="#classes" data-scroll-to>Schedule</a></li>
+              <li><a href="#gallery" data-scroll-to>Gallery</a></li>
+              <li><a href="#contact" data-scroll-to>Contact</a></li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main data-scroll-container class="pt-16 pb-16">
       <!-- HERO -->
-      <section id="hero" data-scroll-section class="hero min-h-[90svh] bg-base-200">
-        <div class="hero-content flex-col lg:flex-row gap-10">
-          <div class="max-w-xl" data-scroll data-scroll-speed="-1">
-            <h1 class="text-5xl font-extrabold leading-tight">The host solution with the most solution</h1>
-            <p class="mt-4 opacity-70">
-              This page exists to sanity check Tailwind v4, daisyUI, Locomotive Scroll, and GSAP.
-              Switch themes, click buttons, scroll around.
+      <section id="intro" class="relative min-h-[85svh] overflow-hidden" data-scroll-section aria-labelledby="intro-title">
+        <div id="hero" class="absolute inset-0">
+          <div id="heroTrack" class="hero-track">
+            <img src="/src/images/elementor-placeholder-image.png" alt="Victory Judo Kai training in Toronto" class="hero-slide" />
+            <img src="/src/images/elementor-placeholder-image.png" alt="Thornhill judo dojo mats" class="hero-slide" />
+            <img src="/src/images/elementor-placeholder-image.png" alt="Kids judo class in Thornhill" class="hero-slide" />
+            <img src="/src/images/elementor-placeholder-image.png" alt="Youth and adult judo training" class="hero-slide" />
+          </div>
+        </div>
+
+        <div class="hero-veil absolute inset-0 bg-black/45"></div>
+
+        <div class="absolute inset-0 z-20 grid place-items-center">
+          <div class="w-full px-4 text-center max-w-2xl">
+            <h1 id="intro-title" class="text-4xl md:text-6xl font-extrabold">Victory Judo Kai</h1>
+
+            <p class="mt-4 text-lg md:text-xl opacity-95">
+              Judo club in
+              <a href="#classes" data-scroll-to class="font-extrabold underline decoration-dotted underline-offset-4 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary">
+                <strong>Thornhill, Toronto</strong>
+              </a>
+              for kids, youth, and adults.
             </p>
-            <div class="mt-6 flex gap-3">
-              <a class="btn btn-primary" data-scroll-to href="#parallax">Try parallax</a>
-              <button class="btn btn-secondary" id="toastBtn">Show toast</button>
-            </div>
-          </div>
-          <div class="mockup-window border bg-base-300 w-full max-w-xl" data-scroll data-scroll-speed="1">
-            <div class="bg-base-200 p-6">
-              <ul class="space-y-2">
-                <li class="text-success font-medium">Tailwind + daisyUI active</li>
-                <li class="text-info font-medium">Locomotive Scroll smooth scrolling</li>
-                <li class="text-warning font-medium">GSAP ready below</li>
-              </ul>
+            <p class="mt-2 text-base md:text-lg opacity-95">
+              First lesson is <strong class="text-metallic-gold gold-shimmer">always free</strong>.
+            </p>
+
+            <div class="mt-6 flex justify-center gap-3">
+              <a href="#classes" data-scroll-to class="btn btn-primary">See schedule</a>
+              <a href="#contact" data-scroll-to class="btn btn-outline">Contact</a>
             </div>
           </div>
         </div>
-      </section>
 
-      <!-- PARALLAX -->
-      <section id="parallax" data-scroll-section class="bg-base-100">
-        <div class="container mx-auto px-4 py-24">
-          <h2 class="text-3xl font-bold mb-8">Parallax showcase</h2>
-
-          <div class="relative h-80 overflow-hidden rounded-box bg-base-200">
-            <h3 class="absolute left-6 top-6 text-4xl font-extrabold" data-scroll data-scroll-speed="2">Fast layer</h3>
-            <p class="absolute right-6 bottom-6 text-xl" data-scroll data-scroll-speed="-1">Reverse slow</p>
-            <div class="absolute inset-0 grid place-items-center text-2xl opacity-70"
-                 data-scroll data-scroll-call="centerSeen">
-              Center layer triggers a Locomotive call
-            </div>
-          </div>
-
-          <div class="mt-12 grid gap-6 md:grid-cols-3">
-            <div class="stat bg-base-200 rounded-box" data-scroll data-scroll-speed="1">
-              <div class="stat-title">Tailwind</div>
-              <div class="stat-value">v4</div>
-              <div class="stat-desc">Utilities render</div>
-            </div>
-            <div class="stat bg-base-200 rounded-box" data-scroll data-scroll-speed="0">
-              <div class="stat-title">daisyUI</div>
-              <div class="stat-value">v5</div>
-              <div class="stat-desc">Components styled</div>
-            </div>
-            <div class="stat bg-base-200 rounded-box" data-scroll data-scroll-speed="-1">
-              <div class="stat-title">Locomotive</div>
-              <div class="stat-value">Smooth</div>
-              <div class="stat-desc">Parallax works</div>
-            </div>
-          </div>
+        <button class="btn btn-circle hero-arrow left" aria-label="Previous slide" data-hero="prev">❮</button>
+        <button class="btn btn-circle hero-arrow right" aria-label="Next slide" data-hero="next">❯</button>
+        <div class="hero-dots">
+          <button class="dot" data-hero-index="0" aria-label="Slide 1"></button>
+          <button class="dot" data-hero-index="1" aria-label="Slide 2"></button>
+          <button class="dot" data-hero-index="2" aria-label="Slide 3"></button>
+          <button class="dot" data-hero-index="3" aria-label="Slide 4"></button>
         </div>
       </section>
 
-      <!-- COMPONENTS -->
-      <section id="components" data-scroll-section class="bg-base-200">
-        <div class="container mx-auto px-4 py-24">
-          <h2 class="text-3xl font-bold mb-8">daisyUI components</h2>
-          <div class="grid gap-6 md:grid-cols-3">
-            <div class="card bg-base-100 shadow">
-              <div class="card-body">
-                <h3 class="card-title">Link In Bio</h3>
-                <p class="opacity-70">Free 15 day trial, then as low as <span class="font-semibold">$2.50</span> / month</p>
-                <ul class="list-disc list-inside text-sm opacity-80">
-                  <li>Create tons of links</li>
-                  <li>Free SSL</li>
-                  <li>Embed media</li>
-                  <li>Connect analytics</li>
-                </ul>
-                <div class="card-actions justify-end">
-                  <button class="btn btn-primary btn-sm">Start trial</button>
-                </div>
+      <!-- COACH -->
+      <section id="coach" aria-labelledby="coach-title" class="min-h-[100svh] grid content-center bg-base-100" data-scroll-section>
+        <div class="container mx-auto px-4 grid lg:grid-cols-2 gap-10 items-center">
+          <div class="aspect-[3/4] w-full max-w-sm mx-auto">
+            <img src="/src/images/elementor-placeholder-image.png" alt="Head coach at Victory Judo Kai" class="w-full h-full object-cover rounded-box shadow" />
+          </div>
+          <article class="space-y-4">
+            <h2 id="coach-title" class="text-3xl font-bold">Meet your coach</h2>
+            <p>Our coach focuses on strong fundamentals, safe ukemi, and positive mat culture. New students and returning judoka progress with clear instruction and steady practice.</p>
+            <p>Victory Judo Kai builds confidence and fitness through structured sessions. Replace this with your coach bio and certifications.</p>
+          </article>
+        </div>
+      </section>
+
+      <!-- SCHEDULE + MAP -->
+      <section id="classes" aria-labelledby="city-title" class="min-h-[100svh] grid content-center bg-base-200" data-scroll-section>
+        <div class="container mx-auto px-4">
+          <h2 id="city-title" class="text-3xl font-bold text-center mb-6 md:mb-8">Toronto Thornhill</h2>
+
+          <div class="mt-4 grid lg:grid-cols-2 gap-10 items-start">
+            <!-- Schedule -->
+            <article class="space-y-6">
+              <h3 class="text-2xl font-bold text-center">Schedule</h3>
+
+              <!-- Day cards -->
+              <div class="grid gap-4 md:grid-cols-2">
+                <!-- Monday -->
+                <section class="schedule-card card bg-base-100 border border-base-300 shadow-sm">
+                  <div class="card-body">
+                    <h4 class="card-title">Monday</h4>
+                    <ul class="schedule-list">
+                      <li><span>Kids 4–7</span><time>5:30 pm – 6:30 pm</time></li>
+                      <li><span>Kids 8–13</span><time>6:30 pm – 7:30 pm</time></li>
+                      <li><span>Youth and Adults</span><time>7:30 pm – 9:00 pm</time></li>
+                    </ul>
+                  </div>
+                </section>
+
+                <!-- Wednesday -->
+                <section class="schedule-card card bg-base-100 border border-base-300 shadow-sm">
+                  <div class="card-body">
+                    <h4 class="card-title">Wednesday</h4>
+                    <ul class="schedule-list">
+                      <li><span>Kids 4–7</span><time>5:30 pm – 6:30 pm</time></li>
+                      <li><span>Kids 8–13</span><time>6:30 pm – 7:30 pm</time></li>
+                      <li><span>Youth and Adults</span><time>7:30 pm – 9:00 pm</time></li>
+                    </ul>
+                  </div>
+                </section>
+
+                <!-- Friday -->
+                <section class="schedule-card card bg-base-100 border border-base-300 shadow-sm">
+                  <div class="card-body">
+                    <h4 class="card-title">Friday</h4>
+                    <ul class="schedule-list">
+                      <li><span>Kids 4–7</span><time>5:30 pm – 6:30 pm</time></li>
+                      <li><span>Kids 8–13</span><time>6:30 pm – 7:30 pm</time></li>
+                      <li><span>Youth and Adults</span><time>7:30 pm – 9:00 pm</time></li>
+                    </ul>
+                  </div>
+                </section>
+
+                <!-- Saturday -->
+                <section class="schedule-card card bg-base-100 border border-base-300 shadow-sm">
+                  <div class="card-body">
+                    <h4 class="card-title">Saturday</h4>
+                    <ul class="schedule-list">
+                      <li><span>Mixed</span><time>9:30 am – 11:00 am</time></li>
+                    </ul>
+                  </div>
+                </section>
               </div>
-            </div>
-            <div class="card bg-base-100 shadow">
-              <div class="card-body">
-                <h3 class="card-title">Articulation</h3>
-                <p class="opacity-70">As low as <span class="font-semibold">$6.00</span> / month</p>
-                <ul class="list-disc list-inside text-sm opacity-80">
-                  <li>Drag and drop builder</li>
-                  <li>Unlimited pages</li>
-                  <li>Blog and forms</li>
-                  <li>Ecommerce ready</li>
-                </ul>
-                <div class="card-actions justify-end">
-                  <button class="btn btn-secondary btn-sm">Explore</button>
-                </div>
+            </article>
+
+            <!-- Map and address -->
+            <div class="w-full">
+              <div class="aspect-[3/2] md:aspect-[4/3] w-full rounded-box border border-base-300 overflow-hidden">
+                <iframe
+                  title="Map to Victory Judo Kai - 66 Glen Cameron Rd Unit 2, Thornhill, ON"
+                  class="w-full h-full"
+                  loading="lazy"
+                  referrerpolicy="no-referrer-when-downgrade"
+                  src="https://www.google.com/maps?q=66%20Glen%20Cameron%20Rd%20Unit%202%2C%20Thornhill%2C%20ON%2C%20L3T%201P2&output=embed">
+                </iframe>
               </div>
-            </div>
-            <div class="card bg-base-100 shadow">
-              <div class="card-body">
-                <h3 class="card-title">Cloud WordPress</h3>
-                <p class="opacity-70">Free 15 day trial, then as low as <span class="font-semibold">$2.50</span> / month</p>
-                <ul class="list-disc list-inside text-sm opacity-80">
-                  <li>Built on WP Cloud</li>
-                  <li>CDN included</li>
-                  <li>Automatic backups</li>
-                  <li>DDoS protection</li>
-                </ul>
-                <div class="card-actions justify-end">
-                  <button class="btn btn-accent btn-sm">Spin up</button>
-                </div>
-              </div>
+              <p class="mt-4 text-center text-base md:text-lg font-semibold bg-base-100/80 border border-base-300 rounded-box px-4 py-3 shadow-sm">
+                All sessions at
+                <a class="link" target="_blank" rel="noopener"
+                   href="https://maps.google.com/?q=66+Glen+Cameron+Rd+Unit+2,+Thornhill,+ON+L3T+1P2">
+                  66 Glen Cameron Rd Unit 2, Thornhill, ON L3T 1P2
+                </a>.
+              </p>
             </div>
           </div>
+        </div>
+      </section>
 
-          <div class="mt-12 flex flex-wrap items-center gap-3">
-            <input type="text" placeholder="Your email" class="input input-bordered" />
-            <button class="btn">Subscribe</button>
-            <label class="label">
-              <span class="label-text-alt opacity-60">No spam. Unsubscribe anytime.</span>
-            </label>
+      <!-- GALLERY -->
+      <section id="gallery" aria-labelledby="gallery-title" class="min-h-[100svh] grid content-center bg-base-100" data-scroll-section>
+        <div class="container mx-auto px-4">
+          <h2 id="gallery-title" class="text-3xl font-bold mb-6">Gallery and videos</h2>
+          <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+            <img src="/src/images/elementor-placeholder-image.png" alt="Victory Judo Kai Toronto gallery image" class="w-full h-40 object-cover rounded-box" />
+            <img src="/src/images/elementor-placeholder-image.png" alt="Thornhill judo practice gallery image" class="w-full h-40 object-cover rounded-box" />
+            <img src="/src/images/elementor-placeholder-image.png" alt="Kids judo class gallery image" class="w-full h-40 object-cover rounded-box" />
+            <img src="/src/images/elementor-placeholder-image.png" alt="Adult judo training gallery image" class="w-full h-40 object-cover rounded-box" />
+          </div>
+
+          <div class="mt-8">
+            <div class="aspect-video w-full rounded-box bg-base-200 grid place-items-center">
+              <span class="opacity-60">Videos coming soon</span>
+            </div>
           </div>
         </div>
       </section>
 
-      <!-- GSAP -->
-      <section id="gsap" data-scroll-section class="bg-base-100">
-        <div class="container mx-auto px-4 py-24">
-          <h2 class="text-3xl font-bold mb-2">GSAP timeline</h2>
-          <p class="opacity-70 mb-8">Click Play. If the boxes move and rotate, GSAP works.</p>
-
-          <div class="flex items-center gap-3 mb-6">
-            <button id="playTl" class="btn btn-primary">Play</button>
-            <button id="reverseTl" class="btn btn-outline">Reverse</button>
-            <button id="resetTl" class="btn">Reset</button>
+      <!-- CONTACT SECTION -->
+      <section id="contact" class="contact-section bg-base-200 text-base-content py-16 border-t border-base-300" data-scroll-section aria-label="Contact information">
+        <div class="container mx-auto px-4">
+          <!-- Centered phone block -->
+          <div class="text-center mb-10">
+            <div class="text-error text-sm font-bold tracking-wide uppercase mb-2">Phone Number</div>
+            <a id="contactPhone" href="tel:+14160000000" class="contact-phone link link-hover">(416) 000-0000</a>
           </div>
 
-          <div class="flex gap-6">
-            <div id="green" class="box w-24 h-24 rounded-box bg-green-500"></div>
-            <div id="blue" class="box w-24 h-24 rounded-box bg-blue-500"></div>
-            <div id="orange" class="box w-24 h-24 rounded-box bg-orange-500"></div>
+          <!-- Other info -->
+          <div class="grid md:grid-cols-2 gap-8 justify-items-center">
+            <div class="text-center">
+              <div class="text-error text-sm font-bold tracking-wide uppercase mb-2">Address</div>
+              <a href="mailto:info@victoryjudokai.example" class="link link-hover text-lg">info@victoryjudokai.example</a>
+            </div>
+            <div class="text-center">
+              <div class="text-error text-sm font-bold tracking-wide uppercase mb-2">Location</div>
+              <a class="link link-hover text-lg" target="_blank" rel="noopener"
+                 href="https://maps.google.com/?q=66+Glen+Cameron+Rd+Unit+2,+Thornhill,+ON+L3T+1P2">
+                66 Glen Cameron Rd Unit 2, Thornhill
+              </a>
+            </div>
           </div>
+
+          <p class="mt-10 text-center text-base md:text-lg">
+            If you are interested, call us.
+          </p>
         </div>
       </section>
-
-      <!-- CONTACT -->
-      <section id="contact" data-scroll-section class="bg-base-200">
-        <div class="container mx-auto px-4 py-24 text-center">
-          <h2 class="text-3xl font-bold mb-4">That is it</h2>
-          <p class="opacity-70">If everything above looks right, your stack is good.</p>
-          <div class="mt-6">
-            <a data-scroll-to href="#hero" class="link link-hover">Back to top</a>
-          </div>
-        </div>
-      </section>
-
-      <footer data-scroll-section class="footer footer-center bg-base-100 text-base-content p-10 border-t border-base-300">
-        <nav class="grid grid-flow-col gap-4">
-          <a data-scroll-to href="#components" class="link link-hover">Components</a>
-          <a data-scroll-to href="#gsap" class="link link-hover">GSAP</a>
-        </nav>
-        <aside>
-          <p>Remove anything you do not need. This page is a test bed.</p>
-        </aside>
-      </footer>
     </main>
 
-    <!-- daisyUI modal -->
-    <dialog id="infoModal" class="modal">
-      <div class="modal-box">
-        <h3 class="font-bold text-lg">Modal</h3>
-        <p class="py-4">If this is styled, daisyUI is loaded.</p>
-        <div class="modal-action">
-          <form method="dialog">
-            <button class="btn">Close</button>
-          </form>
-        </div>
+    <footer class="bg-base-100">
+      <div class="container mx-auto px-4 py-8 text-center">
+        <p class="text-sm opacity-70">© <span id="year"></span> Victory Judo Kai Toronto. All rights reserved.</p>
       </div>
-      <form method="dialog" class="modal-backdrop">
-        <button>close</button>
-      </form>
-    </dialog>
+    </footer>
 
     <script type="module" src="/src/main.js"></script>
   </body>

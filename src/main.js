@@ -1,80 +1,98 @@
 import LocomotiveScroll from "locomotive-scroll";
-import { gsap } from "gsap";
 
-/* Theme switcher */
-document.querySelectorAll("[data-theme-switch]").forEach((el) => {
-  el.addEventListener("click", () => {
-    const theme = el.getAttribute("data-theme-switch");
-    document.documentElement.setAttribute("data-theme", theme);
-  });
-});
+/* Smooth scrolling for section links with phone highlight on Contact */
+let loco;
+const container = document.querySelector("[data-scroll-container]");
 
-/* Modal + toast */
-const modal = document.getElementById("infoModal");
-document.getElementById("openModal")?.addEventListener("click", () => modal?.showModal());
-document.getElementById("toastBtn")?.addEventListener("click", () => {
-  const toast = document.createElement("div");
-  toast.className = "toast toast-end";
-  toast.innerHTML = `<div class="alert alert-info"><span>Hello from daisyUI.</span></div>`;
-  document.body.appendChild(toast);
-  setTimeout(() => toast.remove(), 1800);
-});
+function pulsePhone() {
+  const el = document.getElementById("contactPhone");
+  if (!el) return;
+  el.classList.remove("pop-highlight"); // reset if already there
+  // reflow to restart animation
+  void el.offsetWidth;
+  el.classList.add("pop-highlight");
+  setTimeout(() => el.classList.remove("pop-highlight"), 1400);
+}
 
-/* Init Locomotive */
-const scrollContainer = document.querySelector("[data-scroll-container]");
-let scroll;
 try {
-  scroll = new LocomotiveScroll({
-    el: scrollContainer,
-    smooth: true,
-  });
-
-  // Anchor links use Locomotive's scrollTo
+  loco = new LocomotiveScroll({ el: container, smooth: true });
   document.querySelectorAll("[data-scroll-to]").forEach((a) => {
     a.addEventListener("click", (e) => {
       e.preventDefault();
       const target = a.getAttribute("href");
       if (!target) return;
-      scroll.scrollTo(target);
+
+      const isContact = target === "#contact";
+      if (isContact) {
+        loco.scrollTo(target, { duration: 900, offset: 0, callback: () => pulsePhone() });
+      } else {
+        loco.scrollTo(target, { duration: 900, offset: 0 });
+      }
     });
   });
-
-  // Listen for a test call
-  scroll.on("call", (func) => {
-    if (func === "centerSeen") {
-      const el = document.createElement("div");
-      el.className = "toast toast-top toast-center";
-      el.innerHTML = `<div class="alert alert-success"><span>Locomotive call fired.</span></div>`;
-      document.body.appendChild(el);
-      setTimeout(() => el.remove(), 1200);
-    }
+} catch (e) {
+  console.warn("Locomotive Scroll not initialized. Falling back to default anchors.", e);
+  document.querySelectorAll("[data-scroll-to]").forEach((a) => {
+    a.addEventListener("click", (e) => {
+      e.preventDefault();
+      const target = a.getAttribute("href");
+      if (!target) return;
+      document.querySelector(target)?.scrollIntoView({ behavior: "smooth" });
+      if (target === "#contact") {
+        setTimeout(pulsePhone, 900);
+      }
+    });
   });
-
-  window._scroll = scroll; // for quick console checks
-} catch (err) {
-  console.error("Locomotive failed to init:", err);
 }
 
-/* GSAP timeline */
-const tl = gsap.timeline({ paused: true });
-tl.to("#green", { duration: 0.6, x: 120, rotation: 20, opacity: 0.9 })
-  .to("#blue", { duration: 0.8, x: 240, rotation: -15, opacity: 0.9 })
-  .to("#orange", { duration: 0.6, x: 360, rotation: 10, opacity: 0.9 });
+/* Dark mode toggle */
+const toggle = document.getElementById("themeToggle");
+if (toggle) {
+  toggle.addEventListener("change", () => {
+    const root = document.documentElement;
+    const next = root.getAttribute("data-theme") === "dark" ? "light" : "dark";
+    root.setAttribute("data-theme", next);
+  });
+}
 
-document.getElementById("playTl")?.addEventListener("click", () => {
-  tl.restart();
-});
-document.getElementById("reverseTl")?.addEventListener("click", () => {
-  tl.reverse();
-});
-document.getElementById("resetTl")?.addEventListener("click", () => {
-  tl.pause(0).clear();
-  tl
-    .to("#green", { duration: 0.6, x: 120, rotation: 20, opacity: 0.9 })
-    .to("#blue", { duration: 0.8, x: 240, rotation: -15, opacity: 0.9 })
-    .to("#orange", { duration: 0.6, x: 360, rotation: 10, opacity: 0.9 });
-});
+/* Footer year */
+const yearEl = document.getElementById("year");
+if (yearEl) yearEl.textContent = new Date().getFullYear();
 
-/* Simple entrance animations so you know GSAP runs on load */
-gsap.from(".hero h1", { y: 30, opacity: 0, duration: 0.6 });
-gsap.from(".hero p", { y: 20, opacity: 0, duration: 0.6, delay: 0.1 });
+/* HERO slider: slide, not fade */
+const track = document.getElementById("heroTrack");
+if (track) {
+  const slides = Array.from(track.querySelectorAll(".hero-slide"));
+  const dots = Array.from(document.querySelectorAll("[data-hero-index]"));
+  const prevBtn = document.querySelector("[data-hero='prev']");
+  const nextBtn = document.querySelector("[data-hero='next']");
+
+  let i = 0;
+  let timer;
+
+  const go = (idx) => {
+    i = (idx + slides.length) % slides.length;
+    track.style.transform = `translateX(${-i * 100}%)`;
+    dots.forEach((d, di) => d.classList.toggle("active", di === i));
+  };
+
+  const next = () => go(i + 1);
+  const prev = () => go(i - 1);
+
+  const start = () => { stop(); timer = setInterval(next, 5000); };
+  const stop = () => { if (timer) clearInterval(timer); };
+
+  // init
+  go(0);
+  start();
+
+  // controls
+  nextBtn?.addEventListener("click", () => { next(); start(); });
+  prevBtn?.addEventListener("click", () => { prev(); start(); });
+  dots.forEach((d, di) => d.addEventListener("click", () => { go(di); start(); }));
+
+  // optional: pause on hover for desktop
+  const hero = document.getElementById("hero");
+  hero?.addEventListener("mouseenter", stop);
+  hero?.addEventListener("mouseleave", start);
+}

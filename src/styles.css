@@ -1,11 +1,134 @@
-/* Tailwind v4 base */
 @import "tailwindcss";
-
-/* daisyUI plugin */
 @plugin "daisyui";
-
-/* Locomotive Scroll base styles */
 @import "locomotive-scroll/dist/locomotive-scroll.css";
 
-/* Small niceties */
+/* Content max width */
 .container { max-width: 1100px; }
+
+/* Hero slider */
+.hero-track {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  transition: transform .7s ease;
+}
+.hero-slide {
+  flex: 0 0 100%;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.hero-veil { pointer-events: none; }
+
+/* Arrows and dots */
+.hero-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 30;
+}
+.hero-arrow.left { left: .75rem; }
+.hero-arrow.right { right: .75rem; }
+
+.hero-dots {
+  position: absolute;
+  bottom: 1rem;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 30;
+  display: flex;
+  gap: .5rem;
+}
+.dot { width: .75rem; height: .75rem; border-radius: 9999px; background: var(--color-base-300); }
+.dot.active { background: var(--color-primary); }
+
+/* Day badges (if used elsewhere) */
+.day-badge {
+  border: 1px solid #000;
+  transition: transform .15s ease, box-shadow .15s ease;
+}
+.day-badge:hover {
+  transform: translateY(-2px) scale(1.05);
+  box-shadow: 0 6px 14px rgba(0,0,0,.12);
+}
+
+/* Schedule cards */
+.schedule-card { transition: transform .18s ease, box-shadow .18s ease, border-color .18s ease; }
+.schedule-card .card-title {
+  font-size: 1.125rem;
+  font-weight: 800;
+  text-align: center;
+  transition: transform .18s ease;
+}
+.schedule-card:hover { transform: translateY(-2px) scale(1.02); box-shadow: 0 12px 28px rgba(0,0,0,.12); }
+.schedule-card:hover .card-title { transform: translateY(-1px) scale(1.04); }
+
+.schedule-list {
+  display: grid;
+  gap: .5rem;
+}
+.schedule-list li {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: baseline;
+  padding: .25rem 0;
+  border-bottom: 1px dashed var(--fallback-b3, #d1d5db);
+}
+.schedule-list li:last-child { border-bottom: 0; }
+.schedule-list time { font-variant-numeric: tabular-nums; opacity: .9; }
+
+/* Contact section surface: gentle contrast in light and dark */
+.contact-section {
+  background-image: linear-gradient(to bottom, rgba(0,0,0,.03), rgba(0,0,0,0));
+}
+
+/* Centered phone styling and pop effect */
+.contact-phone {
+  display: inline-block;
+  font-size: 1.25rem; /* was 1.75rem */
+  font-weight: 800;
+  letter-spacing: .3px;
+}
+@media (min-width: 768px) {
+  .contact-phone { font-size: 1.5rem; } /* was 2rem */
+}
+.pop-highlight {
+  animation: phonePop 1.2s ease;
+  text-decoration: underline;
+  text-underline-offset: 6px;
+}
+@keyframes phonePop {
+  0% { transform: scale(1); text-shadow: none; }
+  15% { transform: scale(1.08); text-shadow: 0 2px 10px rgba(0,0,0,.15); }
+  40% { transform: scale(1.02); }
+  100% { transform: scale(1); text-shadow: none; }
+}
+
+/* Metallic gold text with occasional shimmer */
+.text-metallic-gold {
+  color: #d4af37;
+  background-image: linear-gradient(90deg,
+    #b88a44 0%,
+    #d4af37 20%,
+    #f1e07a 40%,
+    #d4af37 60%,
+    #caa85e 80%,
+    #b88a44 100%
+  );
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+  -webkit-text-fill-color: transparent;
+}
+.gold-shimmer {
+  background-size: 300% 100%;
+  animation: goldShine 12s ease-in-out infinite;
+}
+@keyframes goldShine {
+  0%, 87% { background-position: 0% 50%; text-shadow: none; }
+  92% { background-position: 100% 50%; text-shadow: 0 0 6px rgba(212,175,55,.6), 0 0 12px rgba(212,175,55,.35); }
+  100% { background-position: 0% 50%; text-shadow: none; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .gold-shimmer { animation: none; }
+}
