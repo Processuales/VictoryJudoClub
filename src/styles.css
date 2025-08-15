@@ -2,8 +2,76 @@
 @plugin "daisyui";
 @import "locomotive-scroll/dist/locomotive-scroll.css";
 
+/* Stronger nav type - fallback stack. If you license a Bank Sans variant, map it here. */
+:root {
+  --font-nav: "Ancizar Sans", system-ui, sans-serif;
+
+  /* Header banner controls. JS will refine these at runtime. */
+  --hdr-h: 4rem;          /* mobile default (h-16 = 64px) */
+  --hdr-h-md: 5rem;       /* md default (h-20 = 80px) */
+  --hdr-dim: 0.8;         /* brightness factor for dimming */
+  --hdr-focal-y: 40%;     /* crop bias: 0% top, 50% center, 100% bottom */
+
+  /* Logo shift controls */
+  --logo-shift-mobile: 20px; /* gentle nudge on small screens */
+  --logo-shift-desktop: 70px; /* clears the sakura on wide screens */
+}
+
+@media (min-width: 768px) {
+  :root { --hdr-h: var(--hdr-h-md); }
+}
+
+.nav-strong {
+  font-family: var(--font-nav);
+  font-weight: 640;
+  font-optical-sizing: auto;
+}
+
 /* Content max width */
 .container { max-width: 1100px; }
+
+/* ===== Header background image layer and transparency ===== */
+.site-header {
+  /* Keep translucency so the image brightness influences the bar */
+  background-color: hsl(var(--b1) / 0.65);
+  border-bottom: 1px solid hsl(var(--b3));
+}
+
+/* Shift logo and "Judo Toronto" right */
+.site-header .navbar-start {
+  padding-left: var(--logo-shift-mobile);
+}
+
+@media (min-width: 768px) {
+  .site-header .navbar-start {
+    padding-left: var(--logo-shift-desktop);
+  }
+}
+
+/* Dark theme slightly more transparent */
+:root[data-theme="dark"] .site-header {
+  background-color: hsl(var(--b1) / 0.55);
+}
+
+/* Render the banner image in a fixed layer so it does not scroll */
+.site-header::before {
+  content: "";
+  position: fixed;
+  inset: 0 auto auto 0;     /* top-left corner, height set below */
+  width: 100%;
+  height: var(--hdr-h);
+  z-index: -1;
+  pointer-events: none;
+
+  background-image: url("/public/images/top_bar_image.png");
+  background-repeat: no-repeat;
+  background-size: cover;                       /* fill width, crop vertical */
+  background-position: center var(--hdr-focal-y);
+  filter: brightness(var(--hdr-dim)) contrast(1.05) saturate(1.06);
+}
+
+/* Ensure the nav content does not paint an opaque panel */
+.site-header .navbar { background: transparent; }
 
 /* Hero slider */
 .hero-track {
@@ -29,7 +97,6 @@
 }
 .hero-arrow.left { left: .75rem; }
 .hero-arrow.right { right: .75rem; }
-
 .hero-dots {
   position: absolute;
   bottom: 1rem;
@@ -39,10 +106,10 @@
   display: flex;
   gap: .5rem;
 }
-.dot { width: .75rem; height: .75rem; border-radius: 9999px; background: var(--color-base-300); }
-.dot.active { background: var(--color-primary); }
+.dot { width: .75rem; height: .75rem; border-radius: 9999px; background: hsl(var(--b3)); }
+.dot.active { background: hsl(var(--p)); }
 
-/* Day badges (if used elsewhere) */
+/* Day badges - legacy */
 .day-badge {
   border: 1px solid #000;
   transition: transform .15s ease, box-shadow .15s ease;
@@ -57,7 +124,7 @@
 .schedule-card .card-title {
   font-size: 1.125rem;
   font-weight: 800;
-  text-align: center;
+  text-align: center; /* center day names */
   transition: transform .18s ease;
 }
 .schedule-card:hover { transform: translateY(-2px) scale(1.02); box-shadow: 0 12px 28px rgba(0,0,0,.12); }
@@ -77,7 +144,7 @@
 .schedule-list li:last-child { border-bottom: 0; }
 .schedule-list time { font-variant-numeric: tabular-nums; opacity: .9; }
 
-/* Contact section surface: gentle contrast in light and dark */
+/* Contact section surface: gentle contrast */
 .contact-section {
   background-image: linear-gradient(to bottom, rgba(0,0,0,.03), rgba(0,0,0,0));
 }
@@ -85,12 +152,12 @@
 /* Centered phone styling and pop effect */
 .contact-phone {
   display: inline-block;
-  font-size: 1.25rem; /* was 1.75rem */
+  font-size: 1.75rem;
   font-weight: 800;
   letter-spacing: .3px;
 }
 @media (min-width: 768px) {
-  .contact-phone { font-size: 1.5rem; } /* was 2rem */
+  .contact-phone { font-size: 2rem; }
 }
 .pop-highlight {
   animation: phonePop 1.2s ease;

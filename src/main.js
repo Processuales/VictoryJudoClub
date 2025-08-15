@@ -1,3 +1,5 @@
+// Import styles so Vite bundles CSS for production
+import './styles.css';
 import LocomotiveScroll from "locomotive-scroll";
 
 /* Smooth scrolling for section links with phone highlight on Contact */
@@ -7,9 +9,8 @@ const container = document.querySelector("[data-scroll-container]");
 function pulsePhone() {
   const el = document.getElementById("contactPhone");
   if (!el) return;
-  el.classList.remove("pop-highlight"); // reset if already there
-  // reflow to restart animation
-  void el.offsetWidth;
+  el.classList.remove("pop-highlight");
+  void el.offsetWidth; // restart animation
   el.classList.add("pop-highlight");
   setTimeout(() => el.classList.remove("pop-highlight"), 1400);
 }
@@ -96,3 +97,56 @@ if (track) {
   hero?.addEventListener("mouseenter", stop);
   hero?.addEventListener("mouseleave", start);
 }
+
+/* ===== Header banner sizing and image metrics ===== */
+(function setupHeaderBanner() {
+  const root = document.documentElement;
+  const header = document.querySelector(".site-header");
+  const navbar = header?.querySelector(".navbar");
+
+  // Keep fixed background height exactly equal to the visible navbar
+  function applyHeaderHeight() {
+    if (!navbar) return;
+    const h = navbar.offsetHeight; // exact pixel height in current breakpoint
+    root.style.setProperty("--hdr-h", h + "px");
+  }
+  applyHeaderHeight();
+  window.addEventListener("resize", applyHeaderHeight);
+  if (document.fonts && document.fonts.ready) {
+    document.fonts.ready.then(applyHeaderHeight).catch(()=>{});
+  }
+
+  // Measure the image pixel size at runtime and expose it
+  const IMG_URL = "/public/images/top_bar_image.png"; // moved to public/images
+  const probe = new Image();
+  probe.decoding = "async";
+  probe.src = IMG_URL;
+
+  const onReady = () => {
+    const w = probe.naturalWidth || 0;
+    const h = probe.naturalHeight || 0;
+    if (w && h) {
+      root.style.setProperty("--hdr-img-w", w);
+      root.style.setProperty("--hdr-img-h", h);
+      const aspect = (w / h).toFixed(3);
+      console.table({
+        "Top bar image width (px)": w,
+        "Top bar image height (px)": h,
+        "Aspect ratio": aspect
+      });
+
+      if (parseFloat(aspect) < 1.4) {
+        root.style.setProperty("--hdr-focal-y", "35%");
+      }
+    } else {
+      console.warn("Could not read top bar image size.");
+    }
+  };
+
+  if ("decode" in probe) {
+    probe.decode().then(onReady).catch(onReady);
+  } else {
+    probe.onload = onReady;
+    probe.onerror = () => console.warn("Header image failed to load.");
+  }
+})();

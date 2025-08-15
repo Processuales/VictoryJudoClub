@@ -4,28 +4,37 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
 
+    <!-- Google Fonts: Ancizar Sans -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Ancizar+Sans:ital,wght@0,100..1000;1,100..1000&display=swap" rel="stylesheet">
+
     <title>Victory Judo Kai Toronto | Judo Club in Thornhill</title>
     <meta name="description" content="Victory Judo Kai in Thornhill, Toronto. Judo club for kids, youth, and adults. Schedule Monday, Wednesday, Friday, and Saturday at 66 Glen Cameron Rd Unit 2." />
 
     <meta property="og:type" content="website" />
     <meta property="og:title" content="Victory Judo Kai Toronto" />
     <meta property="og:description" content="Judo club in Thornhill, Toronto for kids, youth, and adults. Friendly training at Victory Judo Kai." />
-    <meta property="og:image" content="/src/images/elementor-placeholder-image.png" />
-
-    <link rel="stylesheet" href="/src/styles.css" />
+    <meta property="og:image" content="/images/elementor-placeholder-image.png" />
   </head>
 
   <body class="bg-base-100 text-base-content">
     <a href="#intro" class="sr-only focus:not-sr-only focus:absolute focus:left-2 focus:top-2 px-3 py-2 bg-primary text-primary-content rounded">Skip to content</a>
 
-    <header class="fixed top-0 left-0 right-0 z-50 bg-base-100/90 backdrop-blur border-b border-base-300">
-      <nav class="navbar px-2 md:px-3">
+    <!-- HEADER -->
+    <header class="site-header fixed top-0 left-0 right-0 z-50 bg-base-100/90 backdrop-blur border-b border-base-300">
+      <nav class="navbar px-3 md:px-4 h-16 md:h-20">
+        <!-- Left: logo + brand -->
         <div class="navbar-start">
-          <a class="btn btn-ghost text-xl font-bold" href="#intro" data-scroll-to>Victory Judo Kai</a>
+          <a class="flex items-center gap-2" href="#intro" data-scroll-to aria-label="Go to top">
+            <img src="/images/logo-vjk.png" alt="Judo Toronto logo" class="h-8 w-8 md:h-10 md:w-10 rounded-sm object-cover" />
+            <span class="text-xl md:text-2xl font-extrabold tracking-wide nav-strong uppercase">Judo Toronto</span>
+          </a>
         </div>
 
+        <!-- Center: nav -->
         <div class="navbar-center hidden md:flex">
-          <ul class="menu menu-horizontal gap-1">
+          <ul class="menu menu-horizontal gap-2 nav-strong uppercase tracking-wide">
             <li><a href="#intro" data-scroll-to>Home</a></li>
             <li><a href="#coach" data-scroll-to>Coach</a></li>
             <li><a href="#classes" data-scroll-to>Schedule</a></li>
@@ -34,36 +43,56 @@
           </ul>
         </div>
 
-        <div class="navbar-end gap-2">
+        <!-- Right: contact icons + toggles -->
+        <div class="navbar-end gap-3">
+          <a href="tel:+14160000000" class="hidden md:inline-flex items-center gap-2 nav-strong uppercase text-sm" aria-label="Call">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 opacity-80" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+              <path d="M6.62 10.79a15.91 15.91 0 006.59 6.59l2.2-2.2a1 1 0 011.01-.24 12.4 12.4 0 003.89.62 1 1 0 011 1v3.51a1 1 0 01-1 1A17.5 17.5 0 012 6a1 1 0 011-1h3.51a1 1 0 011 1 12.4 12.4 0 00.62 3.89 1 1 0 01-.24 1.01l-2.27 2.27z"/>
+            </svg>
+            <span>(416) 000-0000</span>
+          </a>
+
+          <a href="mailto:info@victoryjudokai.com" class="hidden md:inline-flex items-center gap-2 nav-strong uppercase text-sm" aria-label="Email">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 opacity-80" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+              <path d="M20 4H4a2 2 0 00-2 2v.35l10 6.25L22 6.35V6a2 2 0 00-2-2zm2 5.14l-9.37 5.86a2 2 0 01-2.26 0L1 9.14V18a2 2 0 002 2h16a2 2 0 002-2V9.14z"/>
+            </svg>
+            <span>info@victoryjudokai.com</span>
+          </a>
+
+          <!-- theme toggle -->
           <label class="swap">
             <input id="themeToggle" type="checkbox" />
             <svg class="swap-off w-6 h-6" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24" aria-label="Enable dark mode"><path d="M6.76 4.84l-1.8-1.79-1.42 1.41 1.79 1.8 1.43-1.42zM1 13h3v-2H1v2zm10 9h2v-3h-2v3zM4.94 19.06l1.42 1.41 1.8-1.79-1.41-1.42-1.81 1.8zM20 11V9h-3v2h3zm-8-8h-2v3h2V3zm6.24 1.05l-1.41 1.41 1.79 1.8 1.41-1.42-1.79-1.79zM12 6a 6 6 0 100 12 6 6 0 000-12z"/></svg>
             <svg class="swap-on w-6 h-6" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24" aria-label="Disable dark mode"><path d="M20.742 13.045A8.002 8.002 0 0110.955 3.26 8 8 0 1019.74 12.05c.335.33.67.66 1.002.995z"/></svg>
           </label>
 
+          <!-- mobile dropdown -->
           <div class="dropdown dropdown-end md:hidden">
             <label tabindex="0" class="btn btn-sm">Menu</label>
-            <ul tabindex="0" class="dropdown-content menu bg-base-100 rounded-box w-44 p-2 shadow">
+            <ul tabindex="0" class="dropdown-content menu bg-base-100 rounded-box w-56 p-2 shadow nav-strong uppercase">
               <li><a href="#intro" data-scroll-to>Home</a></li>
               <li><a href="#coach" data-scroll-to>Coach</a></li>
               <li><a href="#classes" data-scroll-to>Schedule</a></li>
               <li><a href="#gallery" data-scroll-to>Gallery</a></li>
               <li><a href="#contact" data-scroll-to>Contact</a></li>
+              <li class="menu-title mt-2">Contact</li>
+              <li><a href="tel:+14160000000">Call (416) 000-0000</a></li>
+              <li><a href="mailto:info@victoryjudokai.com">Email</a></li>
             </ul>
           </div>
         </div>
       </nav>
     </header>
 
-    <main data-scroll-container class="pt-16 pb-16">
+    <main data-scroll-container class="pt-20 pb-16">
       <!-- HERO -->
       <section id="intro" class="relative min-h-[85svh] overflow-hidden" data-scroll-section aria-labelledby="intro-title">
         <div id="hero" class="absolute inset-0">
           <div id="heroTrack" class="hero-track">
-            <img src="/src/images/elementor-placeholder-image.png" alt="Victory Judo Kai training in Toronto" class="hero-slide" />
-            <img src="/src/images/elementor-placeholder-image.png" alt="Thornhill judo dojo mats" class="hero-slide" />
-            <img src="/src/images/elementor-placeholder-image.png" alt="Kids judo class in Thornhill" class="hero-slide" />
-            <img src="/src/images/elementor-placeholder-image.png" alt="Youth and adult judo training" class="hero-slide" />
+            <img src="/images/elementor-placeholder-image.png" alt="Victory Judo Kai training in Toronto" class="hero-slide" />
+            <img src="/images/elementor-placeholder-image.png" alt="Thornhill judo dojo mats" class="hero-slide" />
+            <img src="/images/elementor-placeholder-image.png" alt="Kids judo class in Thornhill" class="hero-slide" />
+            <img src="/images/elementor-placeholder-image.png" alt="Youth and adult judo training" class="hero-slide" />
           </div>
         </div>
 
@@ -105,7 +134,7 @@
       <section id="coach" aria-labelledby="coach-title" class="min-h-[100svh] grid content-center bg-base-100" data-scroll-section>
         <div class="container mx-auto px-4 grid lg:grid-cols-2 gap-10 items-center">
           <div class="aspect-[3/4] w-full max-w-sm mx-auto">
-            <img src="/src/images/elementor-placeholder-image.png" alt="Head coach at Victory Judo Kai" class="w-full h-full object-cover rounded-box shadow" />
+            <img src="/images/elementor-placeholder-image.png" alt="Head coach at Victory Judo Kai" class="w-full h-full object-cover rounded-box shadow" />
           </div>
           <article class="space-y-4">
             <h2 id="coach-title" class="text-3xl font-bold">Meet your coach</h2>
@@ -125,7 +154,6 @@
             <article class="space-y-6">
               <h3 class="text-2xl font-bold text-center">Schedule</h3>
 
-              <!-- Day cards -->
               <div class="grid gap-4 md:grid-cols-2">
                 <!-- Monday -->
                 <section class="schedule-card card bg-base-100 border border-base-300 shadow-sm">
@@ -203,10 +231,10 @@
         <div class="container mx-auto px-4">
           <h2 id="gallery-title" class="text-3xl font-bold mb-6">Gallery and videos</h2>
           <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
-            <img src="/src/images/elementor-placeholder-image.png" alt="Victory Judo Kai Toronto gallery image" class="w-full h-40 object-cover rounded-box" />
-            <img src="/src/images/elementor-placeholder-image.png" alt="Thornhill judo practice gallery image" class="w-full h-40 object-cover rounded-box" />
-            <img src="/src/images/elementor-placeholder-image.png" alt="Kids judo class gallery image" class="w-full h-40 object-cover rounded-box" />
-            <img src="/src/images/elementor-placeholder-image.png" alt="Adult judo training gallery image" class="w-full h-40 object-cover rounded-box" />
+            <img src="/images/elementor-placeholder-image.png" alt="Victory Judo Kai Toronto gallery image" class="w-full h-40 object-cover rounded-box" />
+            <img src="/images/elementor-placeholder-image.png" alt="Thornhill judo practice gallery image" class="w-full h-40 object-cover rounded-box" />
+            <img src="/images/elementor-placeholder-image.png" alt="Kids judo class gallery image" class="w-full h-40 object-cover rounded-box" />
+            <img src="/images/elementor-placeholder-image.png" alt="Adult judo training gallery image" class="w-full h-40 object-cover rounded-box" />
           </div>
 
           <div class="mt-8">
@@ -220,17 +248,15 @@
       <!-- CONTACT SECTION -->
       <section id="contact" class="contact-section bg-base-200 text-base-content py-16 border-t border-base-300" data-scroll-section aria-label="Contact information">
         <div class="container mx-auto px-4">
-          <!-- Centered phone block -->
           <div class="text-center mb-10">
             <div class="text-error text-sm font-bold tracking-wide uppercase mb-2">Phone Number</div>
             <a id="contactPhone" href="tel:+14160000000" class="contact-phone link link-hover">(416) 000-0000</a>
           </div>
 
-          <!-- Other info -->
           <div class="grid md:grid-cols-2 gap-8 justify-items-center">
             <div class="text-center">
               <div class="text-error text-sm font-bold tracking-wide uppercase mb-2">Address</div>
-              <a href="mailto:info@victoryjudokai.example" class="link link-hover text-lg">info@victoryjudokai.example</a>
+              <a href="mailto:info@victoryjudokai.com" class="link link-hover text-lg">info@victoryjudokai.com</a>
             </div>
             <div class="text-center">
               <div class="text-error text-sm font-bold tracking-wide uppercase mb-2">Location</div>
@@ -254,6 +280,7 @@
       </div>
     </footer>
 
+    <!-- Vite entry. Vite will rewrite this to the built asset in dist -->
     <script type="module" src="/src/main.js"></script>
   </body>
 </html>
