@@ -11,11 +11,17 @@
 
     <title>Victory Judo Kai Toronto | Judo Club in Thornhill</title>
     <meta name="description" content="Victory Judo Kai in Thornhill, Toronto. Judo club for kids, youth, and adults. Schedule Monday, Wednesday, Friday, and Saturday at 66 Glen Cameron Rd Unit 2." />
+    <meta name="theme-color" content="#111318" />
 
     <meta property="og:type" content="website" />
     <meta property="og:title" content="Victory Judo Kai Toronto" />
     <meta property="og:description" content="Judo club in Thornhill, Toronto for kids, youth, and adults. Friendly training at Victory Judo Kai." />
-    <meta property="og:image" content="/images/elementor-placeholder-image.png" />
+    <meta property="og:image" content="/public/images/hero_1.jpg" />
+
+    <!-- Preload single hero image -->
+    <link rel="preload" as="image" href="/public/images/hero_1.jpg" fetchpriority="high">
+
+    <link rel="stylesheet" href="/styles.css" />
   </head>
 
   <body class="bg-base-100 text-base-content">
@@ -23,28 +29,27 @@
 
     <!-- HEADER -->
     <header class="site-header fixed top-0 left-0 right-0 z-50 bg-base-100/90 backdrop-blur border-b border-base-300">
-      <nav class="navbar px-3 md:px-4 h-16 md:h-20">
+      <nav class="navbar px-4 md:px-6 h-16 md:h-20">
         <!-- Left: logo + brand -->
         <div class="navbar-start">
           <a class="flex items-center gap-2" href="#intro" data-scroll-to aria-label="Go to top">
-            <img src="/images/logo-vjk.png" alt="Judo Toronto logo" class="h-8 w-8 md:h-10 md:w-10 rounded-sm object-cover" />
+            <img src="/public/images/logo-vjk.png" alt="Judo Toronto logo" class="h-8 w-8 md:h-10 md:w-10 rounded-sm object-cover" />
             <span class="text-xl md:text-2xl font-extrabold tracking-wide nav-strong uppercase">Judo Toronto</span>
           </a>
         </div>
 
         <!-- Center: nav -->
         <div class="navbar-center hidden md:flex">
-          <ul class="menu menu-horizontal gap-2 nav-strong uppercase tracking-wide">
+          <ul class="menu menu-horizontal gap-3 lg:gap-4 nav-strong uppercase tracking-wide">
             <li><a href="#intro" data-scroll-to>Home</a></li>
             <li><a href="#coach" data-scroll-to>Coach</a></li>
             <li><a href="#classes" data-scroll-to>Schedule</a></li>
             <li><a href="#gallery" data-scroll-to>Gallery</a></li>
-            <li><a href="#contact" data-scroll-to>Contact</a></li>
           </ul>
         </div>
 
-        <!-- Right: contact icons + toggles -->
-        <div class="navbar-end gap-3">
+        <!-- Right: contact icons -->
+        <div class="navbar-end gap-8 md:gap-10 pr-5 md:pr-8 lg:pr-12">
           <a href="tel:+14160000000" class="hidden md:inline-flex items-center gap-2 nav-strong uppercase text-sm" aria-label="Call">
             <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 opacity-80" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
               <path d="M6.62 10.79a15.91 15.91 0 006.59 6.59l2.2-2.2a1 1 0 011.01-.24 12.4 12.4 0 003.89.62 1 1 0 011 1v3.51a1 1 0 01-1 1A17.5 17.5 0 012 6a1 1 0 011-1h3.51a1 1 0 011 1 12.4 12.4 0 00.62 3.89 1 1 0 01-.24 1.01l-2.27 2.27z"/>
@@ -59,23 +64,15 @@
             <span>info@victoryjudokai.com</span>
           </a>
 
-          <!-- theme toggle -->
-          <label class="swap">
-            <input id="themeToggle" type="checkbox" />
-            <svg class="swap-off w-6 h-6" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24" aria-label="Enable dark mode"><path d="M6.76 4.84l-1.8-1.79-1.42 1.41 1.79 1.8 1.43-1.42zM1 13h3v-2H1v2zm10 9h2v-3h-2v3zM4.94 19.06l1.42 1.41 1.8-1.79-1.41-1.42-1.81 1.8zM20 11V9h-3v2h3zm-8-8h-2v3h2V3zm6.24 1.05l-1.41 1.41 1.79 1.8 1.41-1.42-1.79-1.79zM12 6a 6 6 0 100 12 6 6 0 000-12z"/></svg>
-            <svg class="swap-on w-6 h-6" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24" aria-label="Disable dark mode"><path d="M20.742 13.045A8.002 8.002 0 0110.955 3.26 8 8 0 1019.74 12.05c.335.33.67.66 1.002.995z"/></svg>
-          </label>
-
           <!-- mobile dropdown -->
           <div class="dropdown dropdown-end md:hidden">
             <label tabindex="0" class="btn btn-sm">Menu</label>
-            <ul tabindex="0" class="dropdown-content menu bg-base-100 rounded-box w-56 p-2 shadow nav-strong uppercase">
+            <ul tabindex="0" class="dropdown-content menu bg-base-100 rounded-box w-64 p-3 shadow nav-strong uppercase">
               <li><a href="#intro" data-scroll-to>Home</a></li>
               <li><a href="#coach" data-scroll-to>Coach</a></li>
               <li><a href="#classes" data-scroll-to>Schedule</a></li>
               <li><a href="#gallery" data-scroll-to>Gallery</a></li>
-              <li><a href="#contact" data-scroll-to>Contact</a></li>
-              <li class="menu-title mt-2">Contact</li>
+              <li class="menu-title mt-2">Get in touch</li>
               <li><a href="tel:+14160000000">Call (416) 000-0000</a></li>
               <li><a href="mailto:info@victoryjudokai.com">Email</a></li>
             </ul>
@@ -84,85 +81,81 @@
       </nav>
     </header>
 
-    <main data-scroll-container class="pt-20 pb-16">
-      <!-- HERO -->
-      <section id="intro" class="relative min-h-[85svh] overflow-hidden" data-scroll-section aria-labelledby="intro-title">
-        <div id="hero" class="absolute inset-0">
-          <div id="heroTrack" class="hero-track">
-            <img src="/images/elementor-placeholder-image.png" alt="Victory Judo Kai training in Toronto" class="hero-slide" />
-            <img src="/images/elementor-placeholder-image.png" alt="Thornhill judo dojo mats" class="hero-slide" />
-            <img src="/images/elementor-placeholder-image.png" alt="Kids judo class in Thornhill" class="hero-slide" />
-            <img src="/images/elementor-placeholder-image.png" alt="Youth and adult judo training" class="hero-slide" />
-          </div>
-        </div>
+    <main data-scroll-container class="pt-16 md:pt-20 pb-16 md:pb-20">
+      <!-- HERO - single image with glass panel -->
+      <section id="intro" class="relative min-h-[90svh] md:min-h-[85svh] overflow-hidden" data-scroll-section aria-labelledby="intro-title">
+        <figure class="absolute inset-0">
+          <img
+            src="/public/images/hero_1.jpg"
+            alt="Victory Judo Kai training in Toronto"
+            class="hero-single"
+            width="2016" height="1512"
+            loading="eager" decoding="async" fetchpriority="high"
+          />
+        </figure>
 
-        <div class="hero-veil absolute inset-0 bg-black/45"></div>
+        <div class="hero-veil absolute inset-0 bg-black/40 md:bg-black/45"></div>
 
-        <div class="absolute inset-0 z-20 grid place-items-center">
-          <div class="w-full px-4 text-center max-w-2xl">
-            <h1 id="intro-title" class="text-4xl md:text-6xl font-extrabold">Victory Judo Kai</h1>
+        <div class="absolute inset-0 z-20 grid place-items-center px-5 sm:px-6 md:px-8">
+          <div class="w-full max-w-2xl">
+            <!-- centered text inside the glass panel -->
+            <div class="glass-panel p-5 sm:p-6 md:p-8 rounded-2xl shadow-xl text-white text-center">
+              <h1 id="intro-title" class="text-4xl sm:text-5xl md:text-6xl font-extrabold leading-tight">Victory Judo Kai</h1>
 
-            <p class="mt-4 text-lg md:text-xl opacity-95">
-              Judo club in
-              <a href="#classes" data-scroll-to class="font-extrabold underline decoration-dotted underline-offset-4 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary">
-                <strong>Thornhill, Toronto</strong>
-              </a>
-              for kids, youth, and adults.
-            </p>
-            <p class="mt-2 text-base md:text-lg opacity-95">
-              First lesson is <strong class="text-metallic-gold gold-shimmer">always free</strong>.
-            </p>
+              <p class="mt-4 text-lg md:text-xl opacity-95">
+                Judo club in
+                <a href="#classes" data-scroll-to class="font-extrabold underline decoration-dotted underline-offset-4 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary">
+                  <strong>Thornhill, Toronto</strong>
+                </a>
+                for kids, youth, and adults.
+              </p>
+              <p class="mt-2 text-base md:text-lg opacity-95">
+                First lesson is <strong class="text-metallic-gold gold-shimmer">always free</strong>.
+              </p>
 
-            <div class="mt-6 flex justify-center gap-3">
-              <a href="#classes" data-scroll-to class="btn btn-primary">See schedule</a>
-              <a href="#contact" data-scroll-to class="btn btn-outline">Contact</a>
+              <div class="mt-6 flex justify-center">
+                <a href="#classes" data-scroll-to class="btn btn-primary btn-lg">See schedule</a>
+              </div>
             </div>
           </div>
-        </div>
-
-        <button class="btn btn-circle hero-arrow left" aria-label="Previous slide" data-hero="prev">❮</button>
-        <button class="btn btn-circle hero-arrow right" aria-label="Next slide" data-hero="next">❯</button>
-        <div class="hero-dots">
-          <button class="dot" data-hero-index="0" aria-label="Slide 1"></button>
-          <button class="dot" data-hero-index="1" aria-label="Slide 2"></button>
-          <button class="dot" data-hero-index="2" aria-label="Slide 3"></button>
-          <button class="dot" data-hero-index="3" aria-label="Slide 4"></button>
         </div>
       </section>
 
       <!-- COACH -->
-      <section id="coach" aria-labelledby="coach-title" class="min-h-[100svh] grid content-center bg-base-100" data-scroll-section>
-        <div class="container mx-auto px-4 grid lg:grid-cols-2 gap-10 items-center">
-          <div class="aspect-[3/4] w-full max-w-sm mx-auto">
-            <img src="/images/elementor-placeholder-image.png" alt="Head coach at Victory Judo Kai" class="w-full h-full object-cover rounded-box shadow" />
+      <section id="coach" aria-labelledby="coach-title" class="section block bg-base-100" data-scroll-section>
+        <div class="container mx-auto px-5 sm:px-6 md:px-8">
+          <div class="grid lg:grid-cols-2 gap-8 sm:gap-10 lg:gap-12 items-center">
+            <div class="aspect-[3/4] w-full max-w-sm sm:max-w-md mx-auto">
+              <img src="/public/images/hero_2.jpg" alt="Head coach at Victory Judo Kai" class="w-full h-full object-cover rounded-box shadow" />
+            </div>
+            <article class="space-y-4">
+              <h2 id="coach-title" class="text-3xl sm:text-4xl font-bold">Meet your coach</h2>
+              <p class="text-base sm:text-lg">Our coach focuses on strong fundamentals, safe ukemi, and positive mat culture. New students and returning judoka progress with clear instruction and steady practice.</p>
+              <p class="text-base sm:text-lg">Victory Judo Kai builds confidence and fitness through structured sessions for all ages.</p>
+            </article>
           </div>
-          <article class="space-y-4">
-            <h2 id="coach-title" class="text-3xl font-bold">Meet your coach</h2>
-            <p>Our coach focuses on strong fundamentals, safe ukemi, and positive mat culture. New students and returning judoka progress with clear instruction and steady practice.</p>
-            <p>Victory Judo Kai builds confidence and fitness through structured sessions. Replace this with your coach bio and certifications.</p>
-          </article>
         </div>
       </section>
 
       <!-- SCHEDULE + MAP -->
-      <section id="classes" aria-labelledby="city-title" class="min-h-[100svh] grid content-center bg-base-200" data-scroll-section>
-        <div class="container mx-auto px-4">
-          <h2 id="city-title" class="text-3xl font-bold text-center mb-6 md:mb-8">Toronto Thornhill</h2>
+      <section id="classes" aria-labelledby="city-title" class="section block bg-base-200" data-scroll-section>
+        <div class="container mx-auto px-5 sm:px-6 md:px-8">
+          <h2 id="city-title" class="text-3xl sm:text-4xl font-bold text-center mb-6 md:mb-8">Toronto Thornhill</h2>
 
-          <div class="mt-4 grid lg:grid-cols-2 gap-10 items-start">
+          <div class="mt-4 grid lg:grid-cols-2 gap-8 sm:gap-10 lg:gap-12 items-start">
             <!-- Schedule -->
             <article class="space-y-6">
-              <h3 class="text-2xl font-bold text-center">Schedule</h3>
+              <h3 class="text-2xl sm:text-3xl font-bold text-center">Schedule</h3>
 
-              <div class="grid gap-4 md:grid-cols-2">
+              <div class="grid gap-4 sm:gap-5 md:grid-cols-2">
                 <!-- Monday -->
                 <section class="schedule-card card bg-base-100 border border-base-300 shadow-sm">
                   <div class="card-body">
                     <h4 class="card-title">Monday</h4>
                     <ul class="schedule-list">
-                      <li><span>Kids 4–7</span><time>5:30 pm – 6:30 pm</time></li>
-                      <li><span>Kids 8–13</span><time>6:30 pm – 7:30 pm</time></li>
-                      <li><span>Youth and Adults</span><time>7:30 pm – 9:00 pm</time></li>
+                      <li><span>Kids 4–7</span><time>5:30 pm - 6:30 pm</time></li>
+                      <li><span>Kids 8–13</span><time>6:30 pm - 7:30 pm</time></li>
+                      <li><span>Youth and Adults</span><time>7:30 pm - 9:00 pm</time></li>
                     </ul>
                   </div>
                 </section>
@@ -172,9 +165,9 @@
                   <div class="card-body">
                     <h4 class="card-title">Wednesday</h4>
                     <ul class="schedule-list">
-                      <li><span>Kids 4–7</span><time>5:30 pm – 6:30 pm</time></li>
-                      <li><span>Kids 8–13</span><time>6:30 pm – 7:30 pm</time></li>
-                      <li><span>Youth and Adults</span><time>7:30 pm – 9:00 pm</time></li>
+                      <li><span>Kids 4–7</span><time>5:30 pm - 6:30 pm</time></li>
+                      <li><span>Kids 8–13</span><time>6:30 pm - 7:30 pm</time></li>
+                      <li><span>Youth and Adults</span><time>7:30 pm - 9:00 pm</time></li>
                     </ul>
                   </div>
                 </section>
@@ -184,9 +177,9 @@
                   <div class="card-body">
                     <h4 class="card-title">Friday</h4>
                     <ul class="schedule-list">
-                      <li><span>Kids 4–7</span><time>5:30 pm – 6:30 pm</time></li>
-                      <li><span>Kids 8–13</span><time>6:30 pm – 7:30 pm</time></li>
-                      <li><span>Youth and Adults</span><time>7:30 pm – 9:00 pm</time></li>
+                      <li><span>Kids 4–7</span><time>5:30 pm - 6:30 pm</time></li>
+                      <li><span>Kids 8–13</span><time>6:30 pm - 7:30 pm</time></li>
+                      <li><span>Youth and Adults</span><time>7:30 pm - 9:00 pm</time></li>
                     </ul>
                   </div>
                 </section>
@@ -196,7 +189,7 @@
                   <div class="card-body">
                     <h4 class="card-title">Saturday</h4>
                     <ul class="schedule-list">
-                      <li><span>Mixed</span><time>9:30 am – 11:00 am</time></li>
+                      <li><span>Mixed</span><time>9:30 am - 11:00 am</time></li>
                     </ul>
                   </div>
                 </section>
@@ -227,60 +220,124 @@
       </section>
 
       <!-- GALLERY -->
-      <section id="gallery" aria-labelledby="gallery-title" class="min-h-[100svh] grid content-center bg-base-100" data-scroll-section>
-        <div class="container mx-auto px-4">
-          <h2 id="gallery-title" class="text-3xl font-bold mb-6">Gallery and videos</h2>
-          <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
-            <img src="/images/elementor-placeholder-image.png" alt="Victory Judo Kai Toronto gallery image" class="w-full h-40 object-cover rounded-box" />
-            <img src="/images/elementor-placeholder-image.png" alt="Thornhill judo practice gallery image" class="w-full h-40 object-cover rounded-box" />
-            <img src="/images/elementor-placeholder-image.png" alt="Kids judo class gallery image" class="w-full h-40 object-cover rounded-box" />
-            <img src="/images/elementor-placeholder-image.png" alt="Adult judo training gallery image" class="w-full h-40 object-cover rounded-box" />
-          </div>
-
-          <div class="mt-8">
-            <div class="aspect-video w-full rounded-box bg-base-200 grid place-items-center">
-              <span class="opacity-60">Videos coming soon</span>
+      <section id="gallery" aria-labelledby="gallery-title" class="section block bg-base-100" data-scroll-section>
+        <div class="container mx-auto px-5 sm:px-6 md:px-8 text-center">
+          <h2 id="gallery-title" class="text-3xl sm:text-4xl font-bold mb-6">Gallery</h2>
+          <div class="gallery-wrap max-w-5xl mx-auto">
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4 justify-items-center">
+              <img src="/public/images/hero_1.jpg" alt="Victory Judo Kai training - gallery" class="w-full h-40 object-cover rounded-box" />
+              <img src="/public/images/hero_2.jpg" alt="Thornhill dojo mats - gallery" class="w-full h-40 object-cover rounded-box" />
+              <img src="/public/images/hero_3.jpg" alt="Kids judo class - gallery" class="w-full h-40 object-cover rounded-box" />
+              <img src="/public/images/hero_4.jpg" alt="Adult judo training - gallery" class="w-full h-40 object-cover rounded-box" />
             </div>
           </div>
         </div>
       </section>
 
-      <!-- CONTACT SECTION -->
-      <section id="contact" class="contact-section bg-base-200 text-base-content py-16 border-t border-base-300" data-scroll-section aria-label="Contact information">
-        <div class="container mx-auto px-4">
-          <div class="text-center mb-10">
-            <div class="text-error text-sm font-bold tracking-wide uppercase mb-2">Phone Number</div>
-            <a id="contactPhone" href="tel:+14160000000" class="contact-phone link link-hover">(416) 000-0000</a>
-          </div>
+      <!-- CONTACT PANEL -->
+      <section id="contact" class="section block contact-dark border-t border-white/10" data-scroll-section aria-label="Contact information">
+        <div class="container mx-auto px-5 sm:px-6 md:px-8">
+          <h2 class="text-3xl sm:text-4xl font-bold text-center mb-8 sm:mb-10">Get in touch</h2>
 
-          <div class="grid md:grid-cols-2 gap-8 justify-items-center">
-            <div class="text-center">
-              <div class="text-error text-sm font-bold tracking-wide uppercase mb-2">Address</div>
-              <a href="mailto:info@victoryjudokai.com" class="link link-hover text-lg">info@victoryjudokai.com</a>
+          <div class="grid gap-5 sm:gap-6 md:grid-cols-3">
+            <!-- Phone -->
+            <div class="rounded-xl border border-white/10 bg-white/5 p-6 sm:p-7 shadow-sm">
+              <div class="flex items-start gap-4">
+                <div class="rounded-full p-3 bg-white/10 border border-white/15">
+                  <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 fill-white/80" viewBox="0 0 24 24" aria-hidden="true">
+                    <path d="M6.62 10.79a15.91 15.91 0 006.59 6.59l2.2-2.2a1 1 0 011.01-.24 12.4 12.4 0 003.89.62 1 1 0 011 1v3.51a1 1 0 01-1 1A17.5 17.5 0 012 6a1 1 0 011-1h3.51a1 1 0 011 1 12.4 12.4 0 00.62 3.89 1 1 0 01-.24 1.01l-2.27 2.27z"/>
+                  </svg>
+                </div>
+                <div>
+                  <div class="text-xs font-bold tracking-wide uppercase text-white/70">Phone</div>
+                  <a id="contactPhone" href="tel:+14160000000" class="mt-1 block text-lg font-semibold link link-hover text-white">(416) 000-0000</a>
+                </div>
+              </div>
             </div>
-            <div class="text-center">
-              <div class="text-error text-sm font-bold tracking-wide uppercase mb-2">Location</div>
-              <a class="link link-hover text-lg" target="_blank" rel="noopener"
-                 href="https://maps.google.com/?q=66+Glen+Cameron+Rd+Unit+2,+Thornhill,+ON+L3T+1P2">
-                66 Glen Cameron Rd Unit 2, Thornhill
-              </a>
+
+            <!-- Email -->
+            <div class="rounded-xl border border-white/10 bg-white/5 p-6 sm:p-7 shadow-sm">
+              <div class="flex items-start gap-4">
+                <div class="rounded-full p-3 bg-white/10 border border-white/15">
+                  <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 fill-white/80" viewBox="0 0 24 24" aria-hidden="true">
+                    <path d="M20 4H4a2 2 0 00-2 2v.35l10 6.25L22 6.35V6a2 2 0 00-2-2zm2 5.14l-9.37 5.86a2 2 0 01-2.26 0L1 9.14V18a2 2 0 002 2h16a2 2 0 002-2V9.14z"/>
+                  </svg>
+                </div>
+                <div>
+                  <div class="text-xs font-bold tracking-wide uppercase text-white/70">Email</div>
+                  <a href="mailto:info@victoryjudokai.com" class="mt-1 block text-lg font-semibold link link-hover text-white">info@victoryjudokai.com</a>
+                </div>
+              </div>
+            </div>
+
+            <!-- Address -->
+            <div class="rounded-xl border border-white/10 bg-white/5 p-6 sm:p-7 shadow-sm">
+              <div class="flex items-start gap-4">
+                <div class="rounded-full p-3 bg-white/10 border border-white/15">
+                  <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 fill-white/80" viewBox="0 0 24 24" aria-hidden="true">
+                    <path d="M12 2a7 7 0 00-7 7c0 5.25 7 13 7 13s7-7.75 7-13a7 7 0 00-7-7zm0 9.5A2.5 2.5 0 1112 6a2.5 2.5 0 010 5.5z"/>
+                  </svg>
+                </div>
+                <div>
+                  <div class="text-xs font-bold tracking-wide uppercase text-white/70">Address</div>
+                  <a class="mt-1 block text-lg font-semibold link link-hover text-white" target="_blank" rel="noopener"
+                     href="https://maps.google.com/?q=66+Glen+Cameron+Rd+Unit+2,+Thornhill,+ON+L3T+1P2">
+                    66 Glen Cameron Rd Unit 2, Thornhill, ON
+                  </a>
+                </div>
+              </div>
             </div>
           </div>
-
-          <p class="mt-10 text-center text-base md:text-lg">
-            If you are interested, call us.
-          </p>
         </div>
       </section>
     </main>
 
-    <footer class="bg-base-100">
-      <div class="container mx-auto px-4 py-8 text-center">
-        <p class="text-sm opacity-70">© <span id="year"></span> Victory Judo Kai Toronto. All rights reserved.</p>
+    <!-- FOOTER - dark to avoid a light strip below contact -->
+    <footer class="site-footer footer-dark border-t border-white/10">
+      <div class="container mx-auto px-5 sm:px-6 md:px-8 py-10 md:py-12">
+        <div class="grid gap-8 sm:gap-10 md:grid-cols-3">
+          <div>
+            <a href="#intro" data-scroll-to class="inline-flex items-center gap-2">
+              <img src="/public/images/logo-vjk.png" alt="Victory Judo Kai logo" class="h-8 w-8 rounded-sm object-cover" />
+              <span class="text-lg font-extrabold tracking-wide nav-strong uppercase">Victory Judo Kai</span>
+            </a>
+            <p class="mt-3 text-sm opacity-80 max-w-sm">
+              Friendly judo training in Thornhill for kids, youth, and adults. First class is always free.
+            </p>
+          </div>
+
+          <nav aria-label="Footer navigation">
+            <div class="text-xs font-bold tracking-wide uppercase mb-3">Explore</div>
+            <ul class="space-y-2">
+              <li><a href="#intro" data-scroll-to class="link link-hover">Home</a></li>
+              <li><a href="#coach" data-scroll-to class="link link-hover">Coach</a></li>
+              <li><a href="#classes" data-scroll-to class="link link-hover">Schedule</a></li>
+              <li><a href="#gallery" data-scroll-to class="link link-hover">Gallery</a></li>
+            </ul>
+          </nav>
+
+          <div>
+            <div class="text-xs font-bold tracking-wide uppercase mb-3">Contact</div>
+            <ul class="space-y-2">
+              <li><a href="tel:+14160000000" class="link link-hover">(416) 000-0000</a></li>
+              <li><a href="mailto:info@victoryjudokai.com" class="link link-hover">info@victoryjudokai.com</a></li>
+              <li>
+                <a class="link link-hover" target="_blank" rel="noopener"
+                   href="https://maps.google.com/?q=66+Glen+Cameron+Rd+Unit+2,+Thornhill,+ON+L3T+1P2">
+                  66 Glen Cameron Rd Unit 2, Thornhill, ON
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="mt-10 pt-6 border-t border-white/10 flex flex-col md:flex-row items-center justify-between gap-4">
+          <p class="text-sm opacity-70">© <span id="year"></span> Victory Judo Kai Toronto. All rights reserved.</p>
+          <a href="#intro" data-scroll-to class="link link-hover text-sm">Back to top ↑</a>
+        </div>
       </div>
     </footer>
 
-    <!-- Vite entry. Vite will rewrite this to the built asset in dist -->
     <script type="module" src="/src/main.js"></script>
   </body>
 </html>
