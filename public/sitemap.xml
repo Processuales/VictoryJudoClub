@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
+  <url>
+    <loc>https://victoryjudokai.com/</loc>
+    <lastmod>2025-08-01</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+
+    <!-- Image sitemap entries help Google Images -->
+    <image:image>
+      <image:loc>https://victoryjudokai.com/public/images/hero_1.jpg</image:loc>
+      <image:title>Victory Judo Kai training in Toronto</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://victoryjudokai.com/public/images/hero_2.jpg</image:loc>
+      <image:title>Thornhill dojo mats</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://victoryjudokai.com/public/images/hero_3.jpg</image:loc>
+      <image:title>Kids judo class</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://victoryjudokai.com/public/images/hero_4.jpg</image:loc>
+      <image:title>Adult judo training</image:title>
+    </image:image>
+  </url>
+</urlset>

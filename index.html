@@ -4,6 +4,16 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
 
+    <!-- SEO essentials -->
+    <link rel="canonical" href="https://victoryjudokai.com/">
+    <link rel="alternate" hreflang="en-CA" href="https://victoryjudokai.com/">
+    <meta name="robots" content="index, follow, max-image-preview:large">
+    <meta name="googlebot" content="index, follow">
+
+    <!-- Icons -->
+    <link rel="icon" href="/favicon.ico" sizes="any">
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+
     <!-- Google Fonts: Ancizar Sans -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -13,10 +23,62 @@
     <meta name="description" content="Victory Judo Kai in Thornhill, Toronto. Judo club for kids, youth, and adults. Schedule Monday, Wednesday, Friday, and Saturday at 66 Glen Cameron Rd Unit 2." />
     <meta name="theme-color" content="#111318" />
 
+    <!-- Open Graph -->
     <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Victory Judo Kai Toronto" />
     <meta property="og:title" content="Victory Judo Kai Toronto" />
     <meta property="og:description" content="Judo club in Thornhill, Toronto for kids, youth, and adults. Friendly training at Victory Judo Kai." />
-    <meta property="og:image" content="/public/images/hero_1.jpg" />
+    <meta property="og:url" content="https://victoryjudokai.com/" />
+    <meta property="og:image" content="https://victoryjudokai.com/public/images/hero_1.jpg" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="Victory Judo Kai training in Toronto" />
+    <meta property="og:locale" content="en_CA" />
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Victory Judo Kai Toronto" />
+    <meta name="twitter:description" content="Judo club in Thornhill, Toronto for kids, youth, and adults. Friendly training at Victory Judo Kai." />
+    <meta name="twitter:image" content="https://victoryjudokai.com/public/images/hero_1.jpg" />
+
+    <!-- Structured data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "SportsActivityLocation",
+      "name": "Victory Judo Kai Toronto",
+      "url": "https://victoryjudokai.com/",
+      "image": [
+        "https://victoryjudokai.com/public/images/hero_1.jpg",
+        "https://victoryjudokai.com/public/images/hero_3.jpg",
+        "https://victoryjudokai.com/public/images/hero_4.jpg"
+      ],
+      "sport": "Judo",
+      "telephone": "+1-416-302-7757",
+      "email": "info@victoryjudokai.com",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "66 Glen Cameron Rd Unit 2",
+        "addressLocality": "Thornhill",
+        "addressRegion": "ON",
+        "postalCode": "L3T 1P2",
+        "addressCountry": "CA"
+      },
+      "openingHoursSpecification": [
+        {"@type": "OpeningHoursSpecification", "dayOfWeek": "Monday", "opens": "17:30", "closes": "21:00"},
+        {"@type": "OpeningHoursSpecification", "dayOfWeek": "Wednesday", "opens": "17:30", "closes": "21:00"},
+        {"@type": "OpeningHoursSpecification", "dayOfWeek": "Friday", "opens": "17:30", "closes": "21:00"},
+        {"@type": "OpeningHoursSpecification", "dayOfWeek": "Saturday", "opens": "09:30", "closes": "11:00"}
+      ],
+      "priceRange": "$$",
+      "sameAs": [
+        "https://maps.google.com/?q=66+Glen+Cameron+Rd+Unit+2,+Thornhill,+ON+L3T+1P2"
+      ]
+    }
+    </script>
+
+    <!-- Optional sitemap hint -->
+    <link rel="sitemap" type="application/xml" href="https://victoryjudokai.com/sitemap.xml">
 
     <!-- Preload hero images for the slideshow -->
     <link rel="preload" as="image" href="/public/images/hero_1.jpg" fetchpriority="high">
@@ -156,7 +218,6 @@
 
       <!-- COACH -->
       <section id="coach" aria-labelledby="coach-title" class="section block bg-base-100 relative z-0" data-scroll-section>
-        <!-- bleed sits here and gently overlaps the boundary to kill the seam -->
         <div class="bleed-into-next" aria-hidden="true"></div>
 
         <div class="container mx-auto px-5 sm:px-6 md:px-8">
@@ -182,7 +243,6 @@
           </div>
         </div>
       </section>
-
 
       <!-- SCHEDULE + MAP -->
       <section id="classes" aria-labelledby="city-title" class="section block bg-base-200" data-scroll-section>
