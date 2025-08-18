@@ -18,8 +18,11 @@
     <meta property="og:description" content="Judo club in Thornhill, Toronto for kids, youth, and adults. Friendly training at Victory Judo Kai." />
     <meta property="og:image" content="/public/images/hero_1.jpg" />
 
-    <!-- Preload single hero image -->
+    <!-- Preload hero images for the slideshow -->
     <link rel="preload" as="image" href="/public/images/hero_1.jpg" fetchpriority="high">
+    <link rel="preload" as="image" href="/public/images/hero_2.jpg">
+    <link rel="preload" as="image" href="/public/images/hero_3.jpg">
+    <link rel="preload" as="image" href="/public/images/hero_4.jpg">
 
     <link rel="stylesheet" href="/styles.css" />
   </head>
@@ -30,7 +33,6 @@
     <!-- HEADER -->
     <header class="site-header fixed top-0 left-0 right-0 z-50 bg-base-100/90 backdrop-blur border-b border-base-300">
       <nav class="navbar px-4 md:px-6 h-16 md:h-20">
-        <!-- Left: logo + brand -->
         <div class="navbar-start">
           <a class="flex items-center gap-2" href="#intro" data-scroll-to aria-label="Go to top">
             <img src="/public/images/logo-vjk.png" alt="Judo Toronto logo" class="h-8 w-8 md:h-10 md:w-10 rounded-sm object-cover" />
@@ -38,7 +40,6 @@
           </a>
         </div>
 
-        <!-- Center: nav -->
         <div class="navbar-center hidden md:flex">
           <ul class="menu menu-horizontal gap-3 lg:gap-4 nav-strong uppercase tracking-wide">
             <li><a href="#intro" data-scroll-to>Home</a></li>
@@ -48,13 +49,12 @@
           </ul>
         </div>
 
-        <!-- Right: contact icons -->
         <div class="navbar-end gap-8 md:gap-10 pr-5 md:pr-8 lg:pr-12">
-          <a href="tel:+14160000000" class="hidden md:inline-flex items-center gap-2 nav-strong uppercase text-sm" aria-label="Call">
+          <a href="tel:+14163027757" class="hidden md:inline-flex items-center gap-2 nav-strong uppercase text-sm" aria-label="Call">
             <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 opacity-80" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
               <path d="M6.62 10.79a15.91 15.91 0 006.59 6.59l2.2-2.2a1 1 0 011.01-.24 12.4 12.4 0 003.89.62 1 1 0 011 1v3.51a1 1 0 01-1 1A17.5 17.5 0 012 6a1 1 0 011-1h3.51a1 1 0 011 1 12.4 12.4 0 00.62 3.89 1 1 0 01-.24 1.01l-2.27 2.27z"/>
             </svg>
-            <span>(416) 000-0000</span>
+            <span>(416) 302-7757</span>
           </a>
 
           <a href="mailto:info@victoryjudokai.com" class="hidden md:inline-flex items-center gap-2 nav-strong uppercase text-sm" aria-label="Email">
@@ -64,7 +64,6 @@
             <span>info@victoryjudokai.com</span>
           </a>
 
-          <!-- mobile dropdown -->
           <div class="dropdown dropdown-end md:hidden">
             <label tabindex="0" class="btn btn-sm">Menu</label>
             <ul tabindex="0" class="dropdown-content menu bg-base-100 rounded-box w-64 p-3 shadow nav-strong uppercase">
@@ -73,7 +72,7 @@
               <li><a href="#classes" data-scroll-to>Schedule</a></li>
               <li><a href="#gallery" data-scroll-to>Gallery</a></li>
               <li class="menu-title mt-2">Get in touch</li>
-              <li><a href="tel:+14160000000">Call (416) 000-0000</a></li>
+              <li><a href="tel:+14163027757">Call (416) 302-7757</a></li>
               <li><a href="mailto:info@victoryjudokai.com">Email</a></li>
             </ul>
           </div>
@@ -82,23 +81,56 @@
     </header>
 
     <main data-scroll-container class="pt-16 md:pt-20 pb-16 md:pb-20">
-      <!-- HERO - single image with glass panel -->
-      <section id="intro" class="relative min-h-[90svh] md:min-h-[85svh] overflow-hidden" data-scroll-section aria-labelledby="intro-title">
-        <figure class="absolute inset-0">
-          <img
-            src="/public/images/hero_1.jpg"
-            alt="Victory Judo Kai training in Toronto"
-            class="hero-single"
-            width="2016" height="1512"
-            loading="eager" decoding="async" fetchpriority="high"
-          />
-        </figure>
+      <!-- HERO -->
+      <section id="intro" class="relative min-h-[90svh] md:min-h-[85svh] overflow-visible" data-scroll-section aria-labelledby="intro-title">
+        <!-- Slider -->
+        <div id="heroSlider"
+             class="hero-slider absolute inset-0"
+             role="region"
+             aria-roledescription="carousel"
+             aria-label="Hero image slideshow">
+          <figure class="hero-slide is-active" data-index="0" role="group" aria-roledescription="slide" aria-label="Slide 1 of 4">
+            <img
+              src="/public/images/hero_1.jpg"
+              alt="Victory Judo Kai training in Toronto"
+              class="hero-img"
+              width="2016" height="1512"
+              loading="eager" decoding="async" fetchpriority="high"
+            />
+          </figure>
+          <figure class="hero-slide" data-index="1" role="group" aria-roledescription="slide" aria-label="Slide 2 of 4" aria-hidden="true">
+            <img src="/public/images/hero_2.jpg" alt="Thornhill dojo mats" class="hero-img" width="2016" height="1512" loading="lazy" decoding="async" />
+          </figure>
+          <figure class="hero-slide" data-index="2" role="group" aria-roledescription="slide" aria-label="Slide 3 of 4" aria-hidden="true">
+            <img src="/public/images/hero_3.jpg" alt="Kids judo class" class="hero-img" width="2016" height="1512" loading="lazy" decoding="async" />
+          </figure>
+          <figure class="hero-slide" data-index="3" role="group" aria-roledescription="slide" aria-label="Slide 4 of 4" aria-hidden="true">
+            <img src="/public/images/hero_4.jpg" alt="Adult judo training" class="hero-img" width="2016" height="1512" loading="lazy" decoding="async" />
+          </figure>
+        </div>
 
-        <div class="hero-veil absolute inset-0 bg-black/40 md:bg-black/45"></div>
+        <!-- Darker veil -->
+        <div class="hero-veil absolute inset-0 bg-black/60 md:bg-black/70"></div>
 
-        <div class="absolute inset-0 z-20 grid place-items-center px-5 sm:px-6 md:px-8">
+        <!-- Scattered image cards -->
+        <div class="absolute inset-0 z-40 hero-cards" aria-hidden="true">
+          <figure class="hero-card" data-side="left" data-slot="upper">
+            <img src="/public/images/hero_1.jpg" alt="" class="hero-card-img">
+          </figure>
+          <figure class="hero-card" data-side="left" data-slot="lower">
+            <img src="/public/images/hero_3.jpg" alt="" class="hero-card-img">
+          </figure>
+          <figure class="hero-card" data-side="right" data-slot="upper">
+            <img src="/public/images/hero_2.jpg" alt="" class="hero-card-img">
+          </figure>
+          <figure class="hero-card" data-side="right" data-slot="lower">
+            <img src="/public/images/hero_4.jpg" alt="" class="hero-card-img">
+          </figure>
+        </div>
+
+        <!-- Centered glass CTA -->
+        <div class="absolute inset-0 z-50 grid place-items-center px-5 sm:px-6 md:px-8 hero-cta">
           <div class="w-full max-w-2xl">
-            <!-- centered text inside the glass panel -->
             <div class="glass-panel p-5 sm:p-6 md:p-8 rounded-2xl shadow-xl text-white text-center">
               <h1 id="intro-title" class="text-4xl sm:text-5xl md:text-6xl font-extrabold leading-tight">Victory Judo Kai</h1>
 
@@ -113,8 +145,9 @@
                 First lesson is <strong class="text-metallic-gold gold-shimmer">always free</strong>.
               </p>
 
-              <div class="mt-6 flex justify-center">
+              <div class="mt-6 flex justify-center gap-3">
                 <a href="#classes" data-scroll-to class="btn btn-primary btn-lg">See schedule</a>
+                <a href="#contact" data-scroll-to class="btn btn-outline btn-lg">Get in Touch</a>
               </div>
             </div>
           </div>
@@ -122,20 +155,34 @@
       </section>
 
       <!-- COACH -->
-      <section id="coach" aria-labelledby="coach-title" class="section block bg-base-100" data-scroll-section>
+      <section id="coach" aria-labelledby="coach-title" class="section block bg-base-100 relative z-0" data-scroll-section>
+        <!-- bleed sits here and gently overlaps the boundary to kill the seam -->
+        <div class="bleed-into-next" aria-hidden="true"></div>
+
         <div class="container mx-auto px-5 sm:px-6 md:px-8">
           <div class="grid lg:grid-cols-2 gap-8 sm:gap-10 lg:gap-12 items-center">
             <div class="aspect-[3/4] w-full max-w-sm sm:max-w-md mx-auto">
-              <img src="/public/images/hero_2.jpg" alt="Head coach at Victory Judo Kai" class="w-full h-full object-cover rounded-box shadow" />
+              <img src="/public/images/coach.jpg" alt="Sensei Viktoriya Brezgin" class="w-full h-full object-cover rounded-box shadow" />
             </div>
             <article class="space-y-4">
-              <h2 id="coach-title" class="text-3xl sm:text-4xl font-bold">Meet your coach</h2>
-              <p class="text-base sm:text-lg">Our coach focuses on strong fundamentals, safe ukemi, and positive mat culture. New students and returning judoka progress with clear instruction and steady practice.</p>
-              <p class="text-base sm:text-lg">Victory Judo Kai builds confidence and fitness through structured sessions for all ages.</p>
+              <h2 id="coach-title" class="text-3xl sm:text-4xl font-bold">Sensei Viktoriya</h2>
+              <p class="text-base sm:text-lg">
+                Sensei Viktoriya Brezgin has over <strong>35 years of experience</strong> in judo and sambo. She always puts her students' best interests first and teaches hard work, discipline, and confidence that can be used not only on the mat but off the mat too. Sensei Viktoriya is the head competitive judo coach for the cadet and junior team, where she has brought athletes to national and international levels.
+              </p>
+              <ul class="list-disc pl-6 space-y-2 text-base sm:text-lg">
+                <li>Over 25 years of coaching experience.</li>
+                <li>Former member of the Ukrainian Judo and Sambo National Team.</li>
+                <li>World Cup Judo medalist.</li>
+                <li>3× Sambo World Championships medalist.</li>
+                <li>World Cup team champion in Sambo.</li>
+                <li>NCCP Level 2 Certified.</li>
+                <li>2nd Dan Black Belt in Judo and Black Belt in Taekwondo.</li>
+              </ul>
             </article>
           </div>
         </div>
       </section>
+
 
       <!-- SCHEDULE + MAP -->
       <section id="classes" aria-labelledby="city-title" class="section block bg-base-200" data-scroll-section>
@@ -143,12 +190,10 @@
           <h2 id="city-title" class="text-3xl sm:text-4xl font-bold text-center mb-6 md:mb-8">Toronto Thornhill</h2>
 
           <div class="mt-4 grid lg:grid-cols-2 gap-8 sm:gap-10 lg:gap-12 items-start">
-            <!-- Schedule -->
             <article class="space-y-6">
               <h3 class="text-2xl sm:text-3xl font-bold text-center">Schedule</h3>
 
               <div class="grid gap-4 sm:gap-5 md:grid-cols-2">
-                <!-- Monday -->
                 <section class="schedule-card card bg-base-100 border border-base-300 shadow-sm">
                   <div class="card-body">
                     <h4 class="card-title">Monday</h4>
@@ -160,7 +205,6 @@
                   </div>
                 </section>
 
-                <!-- Wednesday -->
                 <section class="schedule-card card bg-base-100 border border-base-300 shadow-sm">
                   <div class="card-body">
                     <h4 class="card-title">Wednesday</h4>
@@ -172,7 +216,6 @@
                   </div>
                 </section>
 
-                <!-- Friday -->
                 <section class="schedule-card card bg-base-100 border border-base-300 shadow-sm">
                   <div class="card-body">
                     <h4 class="card-title">Friday</h4>
@@ -184,7 +227,6 @@
                   </div>
                 </section>
 
-                <!-- Saturday -->
                 <section class="schedule-card card bg-base-100 border border-base-300 shadow-sm">
                   <div class="card-body">
                     <h4 class="card-title">Saturday</h4>
@@ -196,7 +238,6 @@
               </div>
             </article>
 
-            <!-- Map and address -->
             <div class="w-full">
               <div class="aspect-[3/2] md:aspect-[4/3] w-full rounded-box border border-base-300 overflow-hidden">
                 <iframe
@@ -234,13 +275,12 @@
         </div>
       </section>
 
-      <!-- CONTACT PANEL -->
+      <!-- CONTACT -->
       <section id="contact" class="section block contact-dark border-t border-white/10" data-scroll-section aria-label="Contact information">
         <div class="container mx-auto px-5 sm:px-6 md:px-8">
           <h2 class="text-3xl sm:text-4xl font-bold text-center mb-8 sm:mb-10">Get in touch</h2>
 
           <div class="grid gap-5 sm:gap-6 md:grid-cols-3">
-            <!-- Phone -->
             <div class="rounded-xl border border-white/10 bg-white/5 p-6 sm:p-7 shadow-sm">
               <div class="flex items-start gap-4">
                 <div class="rounded-full p-3 bg-white/10 border border-white/15">
@@ -250,12 +290,11 @@
                 </div>
                 <div>
                   <div class="text-xs font-bold tracking-wide uppercase text-white/70">Phone</div>
-                  <a id="contactPhone" href="tel:+14160000000" class="mt-1 block text-lg font-semibold link link-hover text-white">(416) 000-0000</a>
+                  <a id="contactPhone" href="tel:+14163027757" class="mt-1 block text-lg font-semibold link link-hover text-white">(416) 302-7757</a>
                 </div>
               </div>
             </div>
 
-            <!-- Email -->
             <div class="rounded-xl border border-white/10 bg-white/5 p-6 sm:p-7 shadow-sm">
               <div class="flex items-start gap-4">
                 <div class="rounded-full p-3 bg-white/10 border border-white/15">
@@ -270,7 +309,6 @@
               </div>
             </div>
 
-            <!-- Address -->
             <div class="rounded-xl border border-white/10 bg-white/5 p-6 sm:p-7 shadow-sm">
               <div class="flex items-start gap-4">
                 <div class="rounded-full p-3 bg-white/10 border border-white/15">
@@ -292,7 +330,7 @@
       </section>
     </main>
 
-    <!-- FOOTER - dark to avoid a light strip below contact -->
+    <!-- FOOTER -->
     <footer class="site-footer footer-dark border-t border-white/10">
       <div class="container mx-auto px-5 sm:px-6 md:px-8 py-10 md:py-12">
         <div class="grid gap-8 sm:gap-10 md:grid-cols-3">
@@ -319,7 +357,7 @@
           <div>
             <div class="text-xs font-bold tracking-wide uppercase mb-3">Contact</div>
             <ul class="space-y-2">
-              <li><a href="tel:+14160000000" class="link link-hover">(416) 000-0000</a></li>
+              <li><a href="tel:+14163027757" class="link link-hover">(416) 302-7757</a></li>
               <li><a href="mailto:info@victoryjudokai.com" class="link link-hover">info@victoryjudokai.com</a></li>
               <li>
                 <a class="link link-hover" target="_blank" rel="noopener"
