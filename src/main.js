@@ -9,10 +9,12 @@ import { gsap } from 'gsap';
   document.documentElement.style.setProperty('--hair', `${px}px`);
 })();
 
-/* smooth scrolling + contact pulse */
+/* smooth scrolling control */
 let loco;
 const container = document.querySelector('[data-scroll-container]');
+const isMobile = window.matchMedia('(hover: none) and (pointer: coarse)').matches;
 
+/* pulse the phone in Contact */
 function pulsePhone() {
   const el = document.getElementById('contactPhone');
   if (!el) return;
@@ -22,36 +24,48 @@ function pulsePhone() {
   setTimeout(() => el.classList.remove('pop-highlight'), 1400);
 }
 
-try {
-  loco = new LocomotiveScroll({
-    el: container,
-    smooth: true,
-    smartphone: { smooth: true },
-    tablet: { smooth: true }
-  });
-  document.querySelectorAll('[data-scroll-to]').forEach((a) => {
-    a.addEventListener('click', (e) => {
-      e.preventDefault();
-      const target = a.getAttribute('href');
-      if (!target) return;
-
-      const isContact = target === '#contact';
-      if (isContact) {
-        loco.scrollTo(target, { duration: 900, offset: 0, callback: () => pulsePhone() });
-      } else {
-        loco.scrollTo(target, { duration: 900, offset: 0 });
-      }
+/* Desktop and tablet: smooth scroll. Mobile: native scroll */
+if (!isMobile) {
+  try {
+    loco = new LocomotiveScroll({
+      el: container,
+      smooth: true,
+      smartphone: { smooth: false },
+      tablet: { smooth: true }
     });
-  });
-} catch (e) {
-  console.warn('Locomotive Scroll not initialized. Falling back to default anchors.', e);
+
+    document.querySelectorAll('[data-scroll-to]').forEach((a) => {
+      a.addEventListener('click', (e) => {
+        e.preventDefault();
+        const target = a.getAttribute('href');
+        if (!target) return;
+
+        const isContact = target === '#contact';
+        if (isContact) {
+          loco.scrollTo(target, { duration: 900, offset: 0, callback: () => pulsePhone() });
+        } else {
+          loco.scrollTo(target, { duration: 900, offset: 0 });
+        }
+      });
+    });
+  } catch (e) {
+    console.warn('Locomotive Scroll not initialized. Falling back to default anchors.', e);
+    document.querySelectorAll('[data-scroll-to]').forEach((a) => {
+      a.addEventListener('click', (ev) => {
+        ev.preventDefault();
+        const target = a.getAttribute('href');
+        if (!target) return;
+        document.querySelector(target)?.scrollIntoView({ behavior: 'smooth' });
+        if (target === '#contact') setTimeout(pulsePhone, 900);
+      });
+    });
+  }
+} else {
+  // Mobile: native anchor behavior
   document.querySelectorAll('[data-scroll-to]').forEach((a) => {
-    a.addEventListener('click', (e) => {
-      e.preventDefault();
+    a.addEventListener('click', () => {
       const target = a.getAttribute('href');
-      if (!target) return;
-      document.querySelector(target)?.scrollIntoView({ behavior: 'smooth' });
-      if (target === '#contact') setTimeout(pulsePhone, 900);
+      if (target === '#contact') setTimeout(pulsePhone, 400);
     });
   });
 }
@@ -220,4 +234,174 @@ if (yearEl) yearEl.textContent = new Date().getFullYear();
   });
 
   mql.addEventListener('change', (e) => { if (!e.matches) handleLeave(); });
+})();
+
+/* ===========================
+   Lightbox Gallery Viewer - smarter sizing
+   =========================== */
+(function initLightbox() {
+  const overlay = document.getElementById('lightbox');
+  const stage = overlay?.querySelector('[data-stage]');
+  const imgEl = document.getElementById('lightboxImage');
+  const btnPrev = overlay?.querySelector('.lightbox-prev');
+  const btnNext = overlay?.querySelector('.lightbox-next');
+  const btnClose = overlay?.querySelector('.lightbox-close');
+
+  if (!overlay || !stage || !imgEl || !btnPrev || !btnNext || !btnClose) return;
+
+  const thumbs = Array.from(document.querySelectorAll('#gallery .gallery-thumb img'));
+  const sources = thumbs.map((t) => t.getAttribute('src'));
+  const alts = thumbs.map((t) => t.getAttribute('alt') || 'Gallery image');
+
+  let current = 0;
+  let lastFocused = null;
+
+  function capFactor() {
+    // Smaller than max fit to look professional and not in-your-face
+    const w = window.innerWidth;
+    if (w >= 1280) return 0.58;      // large screens - about 42% smaller than max
+    if (w >= 768)  return 0.64;      // laptops and tablets
+    return 0.72;                     // phones - still smaller than full
+  }
+
+  function fitImage() {
+    const nw = imgEl.naturalWidth || 1600;
+    const nh = imgEl.naturalHeight || 1200;
+
+    const vw = window.innerWidth;
+    const vh = window.innerHeight;
+
+    // comfortable gutters
+    const baseMargin = Math.max(24, Math.min(64, Math.round(Math.min(vw, vh) * 0.08)));
+    // account for side controls and top close button
+    const sideUI = 46 * 2 + 24 * 2;   // two buttons plus gaps
+    const topUI  = 56;                // close button area
+
+    const maxW = Math.max(180, vw - baseMargin * 2 - sideUI);
+    const maxH = Math.max(160, vh - baseMargin * 2 - topUI);
+
+    // classic contain fit
+    const containScale = Math.min(maxW / nw, maxH / nh);
+
+    // additional cap to keep image noticeably smaller than fit
+    const extraCap = capFactor();
+
+    const scale = Math.min(containScale, extraCap);
+
+    const w = Math.floor(nw * scale);
+    const h = Math.floor(nh * scale);
+
+    imgEl.style.width = `${w}px`;
+    imgEl.style.height = `${h}px`;
+  }
+
+  // Preload neighbors for snappy nav
+  function preload(index) {
+    const nextIdx = (index + 1) % sources.length;
+    const prevIdx = (index - 1 + sources.length) % sources.length;
+    [nextIdx, prevIdx].forEach((i) => {
+      const src = sources[i];
+      if (!src) return;
+      const im = new Image();
+      im.src = src;
+    });
+  }
+
+  function show(index) {
+    current = ((index % sources.length) + sources.length) % sources.length;
+    imgEl.src = sources[current];
+    imgEl.alt = alts[current];
+  }
+
+  function open(index) {
+    lastFocused = document.activeElement;
+    show(index);
+    overlay.classList.add('is-open');
+    overlay.setAttribute('aria-hidden', 'false');
+    document.body.classList.add('no-scroll');
+
+    try { loco && loco.stop && loco.stop(); } catch {}
+
+    // size when loaded
+    const onLoad = () => {
+      fitImage();
+      gsap.fromTo(imgEl, { opacity: 0, scale: 0.985 }, { opacity: 1, scale: 1, duration: 0.18, ease: 'power1.out' });
+      preload(current);
+      imgEl.removeEventListener('load', onLoad);
+    };
+    imgEl.addEventListener('load', onLoad);
+
+    btnClose.focus();
+  }
+
+  function close() {
+    overlay.classList.remove('is-open');
+    overlay.setAttribute('aria-hidden', 'true');
+    document.body.classList.remove('no-scroll');
+
+    try { loco && loco.start && loco.start(); } catch {}
+
+    if (lastFocused && typeof lastFocused.focus === 'function') lastFocused.focus();
+  }
+
+  function next() { show(current + 1); }
+  function prev() { show(current - 1); }
+
+  // Click handlers for thumbs
+  document.querySelectorAll('#gallery .gallery-thumb').forEach((btn) => {
+    btn.addEventListener('click', () => {
+      const idx = parseInt(btn.getAttribute('data-index') || '0', 10);
+      open(idx);
+    });
+  });
+
+  // Overlay controls
+  btnNext.addEventListener('click', () => { next(); });
+  btnPrev.addEventListener('click', () => { prev(); });
+  btnClose.addEventListener('click', () => { close(); });
+
+  // Re-fit on each new image load
+  imgEl.addEventListener('load', fitImage);
+
+  // Close when clicking outside image or on transparent parts of stage
+  overlay.addEventListener('click', (e) => {
+    const path = e.composedPath ? e.composedPath() : [];
+    if (path.includes(imgEl) || path.includes(btnNext) || path.includes(btnPrev) || path.includes(btnClose)) return;
+    close();
+  });
+
+  // Keyboard controls
+  document.addEventListener('keydown', (e) => {
+    if (!overlay.classList.contains('is-open')) return;
+    if (e.key === 'Escape') close();
+    else if (e.key === 'ArrowRight') { next(); }
+    else if (e.key === 'ArrowLeft') { prev(); }
+  });
+
+  // Touch swipe
+  let touchX = null, touchY = null, touchTime = 0;
+  function onTouchStart(e) {
+    const t = e.changedTouches[0];
+    touchX = t.clientX; touchY = t.clientY; touchTime = Date.now();
+  }
+  function onTouchEnd(e) {
+    if (touchX === null) return;
+    const t = e.changedTouches[0];
+    const dx = t.clientX - touchX;
+    const dy = t.clientY - touchY;
+    const dt = Date.now() - touchTime;
+    const absX = Math.abs(dx), absY = Math.abs(dy);
+
+    if (dt < 600 && absX > 40 && absX > absY) {
+      if (dx < 0) next();
+      else prev();
+    }
+    touchX = touchY = null; touchTime = 0;
+  }
+  stage.addEventListener('touchstart', onTouchStart, { passive: true });
+  stage.addEventListener('touchend', onTouchEnd, { passive: true });
+
+  // Recalculate on resize and orientation change
+  window.addEventListener('resize', () => { if (overlay.classList.contains('is-open')) fitImage(); });
+  window.addEventListener('orientationchange', () => { setTimeout(() => { if (overlay.classList.contains('is-open')) fitImage(); }, 250); });
 })();
