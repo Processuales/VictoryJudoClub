@@ -40,8 +40,7 @@ if (!isMobile) {
         const target = a.getAttribute('href');
         if (!target) return;
 
-        const isContact = target === '#contact';
-        if (isContact) {
+        if (target === '#contact') {
           loco.scrollTo(target, { duration: 900, offset: 0, callback: () => pulsePhone() });
         } else {
           loco.scrollTo(target, { duration: 900, offset: 0 });
@@ -74,7 +73,7 @@ if (!isMobile) {
 const yearEl = document.getElementById('year');
 if (yearEl) yearEl.textContent = new Date().getFullYear();
 
-/* hero slider - autoplay every 5s and keep bleed synced */
+/* hero slider autoplay and bleed sync */
 (function initHeroSlider() {
   const slider = document.getElementById('heroSlider');
   if (!slider) return;
@@ -85,6 +84,7 @@ if (yearEl) yearEl.textContent = new Date().getFullYear();
   let index = 0;
   slides.forEach((s, i) => s.classList.toggle('is-active', i === 0));
 
+  // bleed element removed by request, leave null to no-op
   const bleedNext = document.querySelector('#coach .bleed-into-next');
 
   function currentImgSrc(i = index) {
@@ -93,7 +93,7 @@ if (yearEl) yearEl.textContent = new Date().getFullYear();
   }
 
   function setBleed(src) {
-    if (!bleedNext) return;
+    if (!bleedNext || !src) return;
     bleedNext.style.setProperty('--bleed-img', `url("${src}")`);
     gsap.fromTo(bleedNext, { opacity: 0.6 }, { opacity: 0.72, duration: 0.3, ease: 'power2.out' });
   }
@@ -126,7 +126,7 @@ if (yearEl) yearEl.textContent = new Date().getFullYear();
   startAuto();
 })();
 
-/* safe scatter positions */
+/* safe scatter positions for hero cards */
 (function scatterHeroCards() {
   const cards = Array.from(document.querySelectorAll('.hero-card'));
   if (!cards.length) return;
@@ -172,7 +172,7 @@ if (yearEl) yearEl.textContent = new Date().getFullYear();
     card.style.top = `${topPct.toFixed(2)}%`;
 
     card.style.setProperty('--rot', `${rand(r.rot[0], r.rot[1]).toFixed(2)}deg`);
-    card.style.zIndex = Math.round(rand(r.z[0], r.z[1])).toString();
+    card.style.zIndex = String(Math.round(rand(r.z[0], r.z[1])));
   }
 
   function layout() { cards.forEach(applyPosition); }
@@ -184,7 +184,7 @@ if (yearEl) yearEl.textContent = new Date().getFullYear();
   window.addEventListener('resize', () => { clearTimeout(t); t = setTimeout(layout, 120); });
 })();
 
-/* desktop-only hover push-away with GSAP */
+/* desktop hover push-away with GSAP */
 (function heroHoverFX() {
   const mql = window.matchMedia('(hover: hover) and (pointer: fine) and (min-width: 768px)');
   if (!mql.matches) return;
@@ -224,21 +224,21 @@ if (yearEl) yearEl.textContent = new Date().getFullYear();
 
   function handleLeave() {
     others(activeCard).forEach((oc) => gsap.to(oc, { x: 0, y: 0, duration: 0.28, ease: 'power2.inOut' }));
-    if (cta) gsap.to(cta, { x: 0, y: 0, duration: 0.28, ease: 'power2.inOut' });
+    if (cta) gsap.to(cta, { x: 0, y: 0, duration: 0.28, 'ease': 'power2.inOut' });
     activeCard = null;
   }
 
   cards.forEach((card) => {
-    card.addEventListener('mouseenter', () => handleEnter(card), { passive: true });
-    card.addEventListener('mouseleave', handleLeave, { passive: true });
+    card.addEventListener('mouseenter', () => handleEnter(card));
+    card.addEventListener('mouseleave', handleLeave);
   });
 
-  mql.addEventListener('change', (e) => { if (!e.matches) handleLeave(); });
+  const onQueryChange = (e) => { if (!e.matches) handleLeave(); };
+  if (typeof mql.addEventListener === 'function') mql.addEventListener('change', onQueryChange);
+  else if (typeof mql.addListener === 'function') mql.addListener(onQueryChange);
 })();
 
-/* ===========================
-   Lightbox Gallery Viewer - smarter sizing
-   =========================== */
+/* Lightbox Gallery Viewer */
 (function initLightbox() {
   const overlay = document.getElementById('lightbox');
   const stage = overlay?.querySelector('[data-stage]');
@@ -257,11 +257,10 @@ if (yearEl) yearEl.textContent = new Date().getFullYear();
   let lastFocused = null;
 
   function capFactor() {
-    // Smaller than max fit to look professional and not in-your-face
     const w = window.innerWidth;
-    if (w >= 1280) return 0.58;      // large screens - about 42% smaller than max
-    if (w >= 768)  return 0.64;      // laptops and tablets
-    return 0.72;                     // phones - still smaller than full
+    if (w >= 1280) return 0.58;
+    if (w >= 768)  return 0.64;
+    return 0.72;
   }
 
   function fitImage() {
@@ -271,22 +270,15 @@ if (yearEl) yearEl.textContent = new Date().getFullYear();
     const vw = window.innerWidth;
     const vh = window.innerHeight;
 
-    // comfortable gutters
     const baseMargin = Math.max(24, Math.min(64, Math.round(Math.min(vw, vh) * 0.08)));
-    // account for side controls and top close button
-    const sideUI = 46 * 2 + 24 * 2;   // two buttons plus gaps
-    const topUI  = 56;                // close button area
+    const sideUI = 46 * 2 + 24 * 2;
+    const topUI  = 56;
 
     const maxW = Math.max(180, vw - baseMargin * 2 - sideUI);
     const maxH = Math.max(160, vh - baseMargin * 2 - topUI);
 
-    // classic contain fit
     const containScale = Math.min(maxW / nw, maxH / nh);
-
-    // additional cap to keep image noticeably smaller than fit
-    const extraCap = capFactor();
-
-    const scale = Math.min(containScale, extraCap);
+    const scale = Math.min(containScale, capFactor());
 
     const w = Math.floor(nw * scale);
     const h = Math.floor(nh * scale);
@@ -295,7 +287,6 @@ if (yearEl) yearEl.textContent = new Date().getFullYear();
     imgEl.style.height = `${h}px`;
   }
 
-  // Preload neighbors for snappy nav
   function preload(index) {
     const nextIdx = (index + 1) % sources.length;
     const prevIdx = (index - 1 + sources.length) % sources.length;
@@ -320,9 +311,8 @@ if (yearEl) yearEl.textContent = new Date().getFullYear();
     overlay.setAttribute('aria-hidden', 'false');
     document.body.classList.add('no-scroll');
 
-    try { loco && loco.stop && loco.stop(); } catch {}
+    try { if (loco && typeof loco.stop === 'function') loco.stop(); } catch {}
 
-    // size when loaded
     const onLoad = () => {
       fitImage();
       gsap.fromTo(imgEl, { opacity: 0, scale: 0.985 }, { opacity: 1, scale: 1, duration: 0.18, ease: 'power1.out' });
@@ -339,7 +329,7 @@ if (yearEl) yearEl.textContent = new Date().getFullYear();
     overlay.setAttribute('aria-hidden', 'true');
     document.body.classList.remove('no-scroll');
 
-    try { loco && loco.start && loco.start(); } catch {}
+    try { if (loco && typeof loco.start === 'function') loco.start(); } catch {}
 
     if (lastFocused && typeof lastFocused.focus === 'function') lastFocused.focus();
   }
@@ -347,7 +337,7 @@ if (yearEl) yearEl.textContent = new Date().getFullYear();
   function next() { show(current + 1); }
   function prev() { show(current - 1); }
 
-  // Click handlers for thumbs
+  // Thumb clicks
   document.querySelectorAll('#gallery .gallery-thumb').forEach((btn) => {
     btn.addEventListener('click', () => {
       const idx = parseInt(btn.getAttribute('data-index') || '0', 10);
@@ -355,27 +345,35 @@ if (yearEl) yearEl.textContent = new Date().getFullYear();
     });
   });
 
-  // Overlay controls
-  btnNext.addEventListener('click', () => { next(); });
-  btnPrev.addEventListener('click', () => { prev(); });
-  btnClose.addEventListener('click', () => { close(); });
+  // Controls
+  btnNext.addEventListener('click', next);
+  btnPrev.addEventListener('click', prev);
+  btnClose.addEventListener('click', close);
 
-  // Re-fit on each new image load
+  // Resize fit
   imgEl.addEventListener('load', fitImage);
-
-  // Close when clicking outside image or on transparent parts of stage
-  overlay.addEventListener('click', (e) => {
-    const path = e.composedPath ? e.composedPath() : [];
-    if (path.includes(imgEl) || path.includes(btnNext) || path.includes(btnPrev) || path.includes(btnClose)) return;
-    close();
+  window.addEventListener('resize', () => { if (overlay.classList.contains('is-open')) fitImage(); });
+  window.addEventListener('orientationchange', () => {
+    setTimeout(() => { if (overlay.classList.contains('is-open')) fitImage(); }, 250);
   });
 
-  // Keyboard controls
+  // Click outside image or on overlay background closes
+  overlay.addEventListener('click', (e) => {
+    const t = e.target;
+    const clickedControls =
+      imgEl.contains(t) ||
+      btnNext.contains(t) ||
+      btnPrev.contains(t) ||
+      btnClose.contains(t);
+    if (!clickedControls) close();
+  });
+
+  // Keyboard
   document.addEventListener('keydown', (e) => {
     if (!overlay.classList.contains('is-open')) return;
     if (e.key === 'Escape') close();
-    else if (e.key === 'ArrowRight') { next(); }
-    else if (e.key === 'ArrowLeft') { prev(); }
+    else if (e.key === 'ArrowRight') next();
+    else if (e.key === 'ArrowLeft') prev();
   });
 
   // Touch swipe
@@ -400,8 +398,4 @@ if (yearEl) yearEl.textContent = new Date().getFullYear();
   }
   stage.addEventListener('touchstart', onTouchStart, { passive: true });
   stage.addEventListener('touchend', onTouchEnd, { passive: true });
-
-  // Recalculate on resize and orientation change
-  window.addEventListener('resize', () => { if (overlay.classList.contains('is-open')) fitImage(); });
-  window.addEventListener('orientationchange', () => { setTimeout(() => { if (overlay.classList.contains('is-open')) fitImage(); }, 250); });
 })();

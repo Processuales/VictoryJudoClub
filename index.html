@@ -73,6 +73,19 @@
       "priceRange": "$$",
       "sameAs": [
         "https://maps.google.com/?q=55+Glen+Cameron+Rd+Unit+2,+Thornhill,+ON+L3T+1P2"
+      ],
+      "employee": [
+        {
+          "@type": "Person",
+          "name": "Sensei Viktoriya Brezgin",
+          "jobTitle": "Judo Coach"
+        },
+        {
+          "@type": "Person",
+          "name": "Anastasia Novikova",
+          "jobTitle": "Sambo Coach",
+          "image": "https://victoryjudokai.com/public/images/new_sensei.png"
+        }
       ]
     }
     </script>
@@ -216,30 +229,74 @@
         </div>
       </section>
 
-      <!-- COACH -->
-      <section id="coach" aria-labelledby="coach-title" class="section block bg-base-100 relative z-0" data-scroll-section>
-        <div class="bleed-into-next" aria-hidden="true"></div>
-
+      <!-- COACHES -->
+      <section id="coach" aria-label="Coaches" class="section block bg-base-100 relative z-0" data-scroll-section>
         <div class="container mx-auto px-5 sm:px-6 md:px-8">
-          <div class="grid lg:grid-cols-2 gap-8 sm:gap-10 lg:gap-12 items-center">
-            <div class="aspect-[3/4] w-full max-w-sm sm:max-w-md mx-auto">
-              <img src="/public/images/coach.jpg" alt="Sensei Viktoriya Brezgin" class="w-full h-full object-cover rounded-box shadow" />
-            </div>
-            <article class="space-y-4">
-              <h2 id="coach-title" class="text-3xl sm:text-4xl font-bold">Sensei Viktoriya</h2>
-              <p class="text-base sm:text-lg">
-                Sensei Viktoriya Brezgin has over <strong>35 years of experience</strong> in judo and sambo. She always puts her students' best interests first and teaches hard work, discipline, and confidence that can be used not only on the mat but off the mat too. Sensei Viktoriya is the head competitive judo coach for the cadet and junior team, where she has brought athletes to national and international levels.
-              </p>
-              <ul class="list-disc pl-6 space-y-2 text-base sm:text-lg">
-                <li>Over 25 years of coaching experience.</li>
-                <li>Former member of the Ukrainian Judo and Sambo National Team.</li>
-                <li>World Cup Judo medalist.</li>
-                <li>3× Sambo World Championships medalist.</li>
-                <li>World Cup team champion in Sambo.</li>
-                <li>NCCP Level 2 Certified.</li>
-                <li>2nd Dan Black Belt in Judo and Black Belt in Taekwondo.</li>
-              </ul>
+          <div class="coach-grid">
+            <!-- Viktoriya card (primary) -->
+            <article class="card coach-card coach-primary bg-base-100 border border-base-300 shadow-sm">
+              <div class="card-body">
+                <div class="coach-card-row">
+                  <div class="coach-media">
+                    <img src="/public/images/coach.jpg" alt="Sensei Viktoriya Brezgin" class="w-full h-full object-cover rounded-box shadow" />
+                  </div>
+                  <div class="coach-content">
+                    <div class="flex items-center justify-between gap-3">
+                      <h3 class="coach-name">Sensei Viktoriya</h3>
+                      <span class="badge badge-outline badge-sm uppercase tracking-wide">Head Coach</span>
+                    </div>
+                    <p>
+                      Sensei Viktoriya Brezgin has over <strong>35 years of experience</strong> in judo and sambo. She always puts her students' best interests first and teaches hard work, discipline, and confidence that can be used not only on the mat but off the mat too. Sensei Viktoriya is the head competitive judo coach for the cadet and junior team, where she has brought athletes to national and international levels.
+                    </p>
+                    <ul class="coach-list">
+                      <li>Over 25 years of coaching experience.</li>
+                      <li>Former member of the Ukrainian Judo and Sambo National Team.</li>
+                      <li>World Cup Judo medalist.</li>
+                      <li>3× Sambo World Championships medalist.</li>
+                      <li>World Cup team champion in Sambo.</li>
+                      <li>NCCP Level 2 Certified.</li>
+                      <li>2nd Dan Black Belt in Judo and Black Belt in Taekwondo.</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
             </article>
+
+            <!-- Sambo coach card (secondary, centered, horizontal layout) -->
+            <aside class="sambo-card card coach-card coach-secondary border border-base-300 shadow-sm">
+              <div class="card-body">
+                <div class="sambo-row">
+                  <div class="sambo-photo-wrap alpha-bg rounded-box">
+                    <img
+                      src="/public/images/new_sensei.png"
+                      alt="Anastasia Novikova, National Team of Ukraine"
+                      class="sambo-photo"
+                      width="900" height="1200"
+                      loading="lazy" decoding="async"
+                    />
+                  </div>
+
+                  <div class="sambo-content">
+                    <div class="flex items-center justify-between gap-3">
+                      <h3 class="text-xl sm:text-2xl font-bold leading-tight">Anastasia Novikova</h3>
+                      <span class="badge badge-outline badge-sm uppercase tracking-wide">Sambo</span>
+                    </div>
+
+                    <p class="mt-3">
+                      International Master of Sports. Member of the National Team of Ukraine with 7 years of experience in Sambo.
+                    </p>
+
+                    <ul class="sambo-list">
+                      <li>World Championship, Sochi, Abkhazia, 2nd place (women)</li>
+                      <li>European Games, Minsk, Belarus, 2nd place (women)</li>
+                      <li>European Championship 2018, Athens, Greece, 2nd place (women)</li>
+                      <li>World Cup, Minsk, Belarus, 1st place (women)</li>
+                      <li>World Cup, Madrid, Spain, 3rd place (women)</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </aside>
           </div>
         </div>
       </section>
@@ -425,7 +482,7 @@
           <div>
             <div class="text-xs font-bold tracking-wide uppercase mb-3">Contact</div>
             <ul class="space-y-2">
-              <li><a href="tel:+14163027757" class="link link-hover">+1 (416) 302-7757</a></li>
+              <li><a href="tel:+14163027757" class="link link-hover">+1(416) 302-7757</a></li>
               <li><a href="mailto:info@victoryjudokai.com" class="link link-hover">info@victoryjudokai.com</a></li>
               <li>
                 <a class="link link-hover" target="_blank" rel="noopener"
